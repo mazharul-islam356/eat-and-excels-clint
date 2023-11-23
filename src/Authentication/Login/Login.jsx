@@ -1,18 +1,62 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import auth from "../Firebase/firebase";
+import Swal from "sweetalert2";
 
 const Login = () => {
+   const [error,setError] = useState('')
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
+
+    const email = data.email;
+    const pass = data.pass;
+    console.log(name,email,pass);
+    if(pass.length < 6){
+      toast.error('Password should be at least 6 characters')
+      return
+    }
+     else if(!/[A-Z]/.test(pass)){
+      toast.error('Please include at least one uppercase letter in your password')
+      return
+    }
+    else if (!/[!@#$%^&*()_+\-=[{};':"|,.<>/?]+/.test(pass)){
+
+      toast.error('Please include Special Characters in your password')
+      return
+    }
+    if(email,pass){
+      signInWithEmailAndPassword(auth,email,pass)
+      .then(res=>{
+        console.log(res.user)
+        if(res.user){
+           
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Login succesfully",
+              showConfirmButton: false,
+              timer: 1550
+            });
+      }
+      })
+      .catch(err=>setError(err.message))  
+    }
+
   }; // your form submit function which will invoke after successful validation
 
   console.log(watch("example"));
+
+  
 
   return (
     <div className="my-10">
@@ -28,7 +72,7 @@ const Login = () => {
           <input
             placeholder="Email"
             className="input input-bordered"
-            {...register("example")}
+            {...register("email")}
           />
 
           <label className="label">
@@ -38,7 +82,7 @@ const Login = () => {
           type="password"
             placeholder="Password"
             className="input input-bordered"
-            {...register("exampleRequired", { required: true })}
+            {...register("pass", { required: true })}
           />
 
           {errors.exampleRequired && <p>This field is required</p>}
