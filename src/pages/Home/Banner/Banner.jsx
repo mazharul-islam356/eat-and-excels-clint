@@ -1,6 +1,7 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const Banner = () => {
 
@@ -45,6 +46,12 @@ const Banner = () => {
           },
         },
       }));
+
+      const axiosSecure = useAxiosSecure()
+      axiosSecure.get('/allData')
+      .then(res=>console.log(res.data))
+
+
     return (
         <div className="my-4">
             <div
@@ -77,6 +84,10 @@ const Banner = () => {
           </div>
         </div>
       </div>
+
+      
+
+
         </div>
     );
 };
