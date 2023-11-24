@@ -2,8 +2,10 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import TabSection from './TabSection';
 
 const Banner = () => {
+
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -47,9 +49,7 @@ const Banner = () => {
         },
       }));
 
-      const axiosSecure = useAxiosSecure()
-      axiosSecure.get('/allData')
-      .then(res=>console.log(res.data))
+      
 
 
     return (
@@ -80,15 +80,11 @@ const Banner = () => {
             />
           </Search>
             
-            
           </div>
         </div>
       </div>
-
-      
-
-
-        </div>
+     <TabSection className="grid lg:grid-cols-3" ></TabSection>
+    </div>
     );
 };
 
