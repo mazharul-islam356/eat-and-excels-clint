@@ -1,10 +1,12 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import auth from "../Firebase/firebase";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Firebase/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
    const [error,setError] = useState('')
@@ -14,6 +16,15 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+// Google login
+const {googleLogin} = useContext(AuthContext)
+  const handleGLogin = (media) => {
+    media()
+    .then(res=>console.log(res.user))
+    .catch(err=>console.log(err))
+  }
+
 
   const onSubmit = (data) => {
     console.log(data);
@@ -90,6 +101,10 @@ const Login = () => {
           <button className="btn mt-2 btn-outline">
             Login
           </button>
+          <button onClick={()=> handleGLogin(googleLogin)} className="btn mt-3">
+                  Continue With
+                  <FcGoogle className="text-xl"></FcGoogle>
+                </button>
         <p>New to here? <Link className="underline" to='/signUp' >Sign Up</Link> Now</p>
         </form>
       </div>

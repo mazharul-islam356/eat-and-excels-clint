@@ -11,7 +11,7 @@ const TabSection = () => {
     const [data, setData] = useState([]);
 
     const [tabIndex,setTabIndex] = useState(0)
-console.log(data);
+// console.log(data);
 
    
 
@@ -28,13 +28,7 @@ console.log(data);
         .then(res => setData(res.data))
         .catch(err => console.error(err));
     }, [axiosSecure]);
-    console.log(data);
-
-
-
-      
-
-    
+    // console.log(data);  
 
 
   return (

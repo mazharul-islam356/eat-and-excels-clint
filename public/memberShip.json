@@ -1,0 +1,43 @@
+[
+      {
+        "name": "Silver Plan",
+        "type": "silver",
+        "price": 50,
+        "meals": 2,
+        "colorCode": "gray",
+        "benefits01":"Personalized meal plan options",
+        "benefits02":"Special dietary requests accommodated",
+        "benefits03":"Convenient meal delivery schedule"
+          
+          
+         
+        
+      },
+      {
+        "name": "Platinum Plan",
+        "type": "platinum ",
+        "price": 100,
+        "meals": 3,
+        "colorCode": "brown",
+        "benefits01":"Personalized gourmet meal plans",
+        "benefits02":"Dedicated chef consultations",
+        "benefits03":"Flexibility to customize meals"
+   
+         
+        
+      },
+      {
+        "name": "Gold Plan",
+        "type": "gold",
+        "price": 70,
+        "meals": 3,
+        "colorCode": "orange",
+        "benefits01":"Access to exclusive chef specials",
+        "benefits02":"Weekly meal plan variations",
+        "benefits03":"Priority meal delivery service"       
+       
+      }
+      
+    ]
+  
+  

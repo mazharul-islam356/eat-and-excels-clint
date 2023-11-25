@@ -130,7 +130,7 @@ function Navbar() {
             </NavLink>
 
             
-            <NavLink to='/UpcomingMeals'>
+            <NavLink to='/AllMeals'>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}    
@@ -140,7 +140,7 @@ function Navbar() {
             </NavLink>
 
 
-            <NavLink to='/meals'>
+            <NavLink to='/UpcomingMeals'>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}        

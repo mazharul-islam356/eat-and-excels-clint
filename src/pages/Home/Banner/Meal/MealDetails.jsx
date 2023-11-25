@@ -25,11 +25,11 @@ const MealDetails = () => {
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <img src={mealImage} className="max-w-sm rounded-lg shadow-2xl" />
+          <img src={mealImage} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
           <div>
             <h1 className="text-5xl font-bold">{mealTitle}</h1>
             <p className="py-6">{description}</p>
-            <Link to='/meal'><button className="btn btn-outline">See All</button></Link>
+            <Link to='/AllMeals'><button className="btn btn-outline">See All</button></Link>
           </div>
         </div>
       </div>
