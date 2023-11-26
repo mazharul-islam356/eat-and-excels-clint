@@ -16,7 +16,7 @@ import { NavLink } from "react-router-dom";
 import { IoRestaurant } from "react-icons/io5";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 
-const settings = ["Profile", "Dashboard", "Logout"];
+const settings = ["Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -167,10 +167,10 @@ function Navbar() {
 {/* Profile and dashboard */}
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+            <Tooltip title="Click here">
+              {user && <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="#" src={user.photoURL} />
+              </IconButton>}
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
@@ -208,7 +208,6 @@ function Navbar() {
     </MenuItem>
  
 ))}
-
 
 
             </Menu> 

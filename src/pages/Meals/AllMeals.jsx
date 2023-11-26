@@ -92,6 +92,8 @@ const AllMeals = () => {
             const isSearchValue = searchValue.toLowerCase() === ""
                 ? item
                 : item.mealTitle.toLowerCase().includes(searchValue);
+
+
             const isCategoryValue = category.toLowerCase() === ""
                 ? item
                 : item.mealType.toLowerCase().includes(category);
@@ -100,7 +102,6 @@ const AllMeals = () => {
 
             return isSearchValue && isCategoryValue;
           })
-          
           .map((card) => (
             <div key={card._id}>
               <Card

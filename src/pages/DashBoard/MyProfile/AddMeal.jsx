@@ -1,13 +1,30 @@
 import { Input, Textarea, Typography } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
 
 const AddMeal = () => {
 
-    const axiosSecure = useAxiosSecure()
+  // time and date
 
-    axiosSecure.post('http://localhost:5173/allData')
-    .then(res=>console.log(res.data))
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+
+  // data fetch
+    // const axiosSecure = useAxiosSecure()
+
+    // axiosSecure.post('http://localhost:5173/allData')
+    // .then(res=>console.log(res.data))
     
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) =>
@@ -158,18 +175,22 @@ const AddMeal = () => {
                     className: "before:content-none after:content-none",
                   }}
                 />
+                <div className="flex gap-4">
                 <Typography variant="h6" color="blue-gray" className="-mb-3">
-                  Time & Date
+                  Time:
                 </Typography>
-                <Input
-                  {...register("time&date")} 
-                  size="lg"
-                  placeholder=""
-                  className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                  labelProps={{
-                    className: "before:content-none after:content-none",
-                  }}
-                />
+                <input {...register("time")} type="text" value={currentTime.toLocaleTimeString()} />
+                {/* <p {...register("time")} >{currentTime.toLocaleTimeString()}</p> */}
+
+                <div className="divider divider-horizontal"></div>
+              
+                <Typography variant="h6" color="blue-gray" className="-mb-3">
+                  Date:
+                </Typography>
+
+                <input {...register("date")} type="text" value={currentTime.toLocaleDateString()} />
+
+                </div>
                 
                 
               </div>

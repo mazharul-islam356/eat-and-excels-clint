@@ -12,8 +12,7 @@ import { MdUpcoming } from "react-icons/md";
 
 const DashBoard = () => {
 
-    const isAdmin = true
-
+    const isAdmin = true;
 
     return (
         <div className="flex w-10/12 mx-auto">
