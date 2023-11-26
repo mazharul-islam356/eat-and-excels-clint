@@ -1,34 +1,48 @@
-import { useEffect, useState } from "react";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLoaderData, useParams } from "react-router-dom";
+import { AuthContext } from "../../../../Authentication/Firebase/AuthProvider";
+import { SlLike } from "react-icons/sl";
+import { VscSend } from "react-icons/vsc";
 
 const MealDetails = () => {
-  const axiosSecure = useAxiosSecure();
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
 
-  useEffect(() => {
-    axiosSecure
-      .get("/allData")
-      .then((res) => setData(res.data))
-      .catch((err) => console.error(err));
-  }, [axiosSecure]);
-  //   console.log(data);
 
-  useEffect(() => {
-    data.map((item) => setData2(item));
-  }, [data]);
-  // console.log(data2);
-  const { mealTitle, description, mealImage } = data2;
+  const [meal,setMeal] = useState()
+
+    const {id} = useParams()
+    console.log(id)
+
+    const detailsData = useLoaderData()
+    console.log(detailsData);
+
+useEffect(()=>{
+    const findProducts = detailsData.find((product)=>product._id === id)
+    setMeal(findProducts)
+},[id,detailsData])
+console.log(meal);
+
+  const { user } = useContext(AuthContext);
 
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <img src={mealImage} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
+          <img src={meal?.mealImage} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
           <div>
-            <h1 className="text-5xl font-bold">{mealTitle}</h1>
-            <p className="py-6">{description}</p>
+        
+            <h1 className="text-5xl font-bold">{user?.displayName}</h1>
+            <span className="py-6">{meal?.description}</span> <br /> <br />
+            <p className="text-xl">{meal?.mealTitle}</p>
+         <h3><span className="font-serif font-semibold">Rating:</span> {meal?.rating} </h3>
+         <h3><span className="font-serif font-semibold">Price:</span> ${meal?.price} </h3>
+         <h3><span className="font-serif font-semibold">Post time:</span> 05.10 </h3>
+        {user &&  <div className="text-xl my-4">
+         <button><SlLike /></button>
+         </div>}
+         <div className="text-xl my-4">
+         <button><VscSend /></button>
+         </div>
+         
             <Link to='/AllMeals'><button className="btn btn-outline">See All</button></Link>
           </div>
         </div>

@@ -17,7 +17,7 @@ const TabsCard = ({item}) => {
           <span>{description}</span>
           <span>Price: ${price}</span>
           <span>Ratting: {rating}</span>
-            <Link to={`/mealDetails/${console.log(_id)}`}><button className="btn btn-outline">Details</button></Link>
+            <Link to={`/mealDetails/${_id}`}><button className="btn btn-outline">Details</button></Link>
         </div>
       </div>
     </div>

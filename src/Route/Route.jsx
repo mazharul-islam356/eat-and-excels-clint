@@ -8,6 +8,18 @@ import SignUp from "../Authentication/SignUp/SignUp";
 import MealDetails from "../pages/Home/Banner/Meal/MealDetails";
 import Payment from "../Membership&Payment/Payment/Payment";
 import AllMeals from "../pages/Meals/AllMeals";
+import DashBoard from "../MainLayout/DashBoard";
+import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
+import Request from "../pages/DashBoard/MyProfile/Request";
+import MyReview from "../pages/DashBoard/MyReview";
+import ManageUser from "../pages/DashBoard/MyProfile/ManageUser";
+import AddMeal from "../pages/DashBoard/MyProfile/AddMeal";
+import AllMeal from "../pages/DashBoard/MyProfile/AllMeal";
+import AllReviews from "../pages/DashBoard/MyProfile/AllReviews";
+import ServeMeals from "../pages/DashBoard/MyProfile/ServeMeals";
+
+
+
 
 
 export const router = createBrowserRouter([
@@ -41,15 +53,61 @@ export const router = createBrowserRouter([
             },
            {
             path: '/mealDetails/:id',
-            element:<MealDetails></MealDetails>
+            element:<MealDetails></MealDetails>,
+            loader: () => fetch('http://localhost:5001/allData')
            },
         
            {
             path: '/payment/:type',
             element:<Payment></Payment>
-           }
+           },
+          
           ]
         },
+        {
+            path:'/dashBoard',
+            element:<DashBoard></DashBoard>,
+            children:[
+                {
+                path:'myProfile',
+                element:<MyProfile></MyProfile>
+            },
+            {
+                path:'req',
+                element:<Request></Request>
+            },
+            {
+                path:'myReview',
+                element:<MyReview></MyReview>
+            },
+            {
+                path:'manageUser',
+                element:<ManageUser></ManageUser>
+            },
+            {
+                path:'addMeal',
+                element:<AddMeal></AddMeal>
+            },
+            {
+                path:'allMeal',
+                element:<AllMeal></AllMeal>
+            },
+            {
+                path:'allReviews',
+                element:<AllReviews></AllReviews>
+            },
+            {
+                path:'serveMeals',
+                element:<ServeMeals></ServeMeals>
+            },
+           
+        ]
+        }
+        
+
+        
+
+
       ]);
 
 
