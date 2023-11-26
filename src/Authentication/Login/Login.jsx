@@ -10,6 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
    const [error,setError] = useState('')
+   
   const {
     register,
     handleSubmit,

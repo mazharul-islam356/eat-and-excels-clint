@@ -14,8 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "react-router-dom";
 import { IoRestaurant } from "react-icons/io5";
+import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,6 +36,16 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const {user,logOut} = React.useContext(AuthContext)
+  console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => console.log("log out succecfullly"))
+      .catch((err) => console.log(err));
+  
+  };
+
 
   return (
     <AppBar position="static">
@@ -111,6 +122,7 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 
+
           <NavLink to='/'>
             <Button
               onClick={handleCloseNavMenu}
@@ -149,9 +161,10 @@ function Navbar() {
             </Button>
            </NavLink>
 
-
-
           </Box>
+
+
+{/* Profile and dashboard */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -175,12 +188,30 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              
+
+
+{settings.map((setting) => (
+  
+    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+      {setting === "Logout" ? (
+        <NavLink onClick={handleLogOut} to={!user && '/login'}>
+          <Typography textAlign="center">{user ? 'Logout' : 'Login'}</Typography>
+        </NavLink>
+      ) : setting === "Dashboard" ? (
+        <NavLink to="/dashboard/myProfile">
+          <Typography textAlign="center">{setting}</Typography>
+        </NavLink>
+      ) : (
+        <Typography textAlign="center">{setting}</Typography>
+      )}
+    </MenuItem>
+ 
+))}
+
+
+
+            </Menu> 
           </Box>
         </Toolbar>
       </Container>

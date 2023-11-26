@@ -13,12 +13,12 @@ const MyProfile = () => {
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="avatar flex justify-center">
             <div className="w-24 rounded-full">
-              <img src={user.photoURL} />
+              <img src={user?.photoURL} />
             </div>
           </div>
           <div className="card-body">
             <h2 className="card-title">{user?.displayName}</h2>
-            <p><span className="font-serif font-semibold">Email: </span>{user.email}</p>
+            <p><span className="font-serif font-semibold">Email: </span>{user?.email}</p>
             <p>TODO: badges</p>
           </div>
         </div>
