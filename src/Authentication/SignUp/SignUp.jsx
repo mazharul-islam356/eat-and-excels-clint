@@ -1,13 +1,35 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Firebase/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
 
-    const {signUp} = useContext(AuthContext)
+    const {signUp,googleLogin} = useContext(AuthContext)
+  const navigatae = useNavigate()
+  const axiosPublic = useAxiosPublic()
+
+
+  const handleGLogin = (media) => {
+    media()
+    .then(res=>{
+      console.log(res.user)
+      const userInfo = {
+        email: res.user.email,
+        name: res.user.displayName
+      }
+      axiosPublic.post('/users',userInfo)
+      .then(res=>{
+        console.log(res.data)
+        navigatae('/')
+      })
+    })
+    .catch(err=>console.log(err))
+  }
 
 
     const {
@@ -41,14 +63,28 @@ const SignUp = () => {
     .then(result=>{
         console.log(result.user)
         if(result.user){
-           
-            Swal.fire({
+          // user entry on database
+          const userInfo = {
+            name: name,
+            email: email
+
+          }
+          axiosPublic.post('/users',userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              console.log('user added to the database');
+              Swal.fire({
                 position: "center",
                 icon: "success",
                 title: "User created succesfully",
                 showConfirmButton: false,
                 timer: 1550
               });
+              navigatae('/login')
+            }
+          })
+          
+           
         }
     })
     .catch(err=>{
@@ -116,8 +152,12 @@ const SignUp = () => {
           {errors.exampleRequired && <p>This field is required</p>}
 
           <button className="btn mt-2 btn-outline">
-            Login
+            Sign up
           </button>
+          <button onClick={()=> handleGLogin(googleLogin)} className="btn mt-3">
+               Continue With
+            <FcGoogle className="text-xl"></FcGoogle>
+            </button>
         <p>Already have an account? <Link className="underline" to='/login' >Login</Link> Now</p>
         </form>
       </div>

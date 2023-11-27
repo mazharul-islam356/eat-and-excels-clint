@@ -198,7 +198,7 @@ const AddMeal = () => {
           </div>
           <div className="flex mt-8">
           <button className=" btn lg:ml-44 btn-wide mb-10 mt-2 btn-outline">
-            Add job
+            Add Meal
           </button>
           <button className="btn ml-20 btn-wide mb-10 mt-2 btn-outline">
             Upcoming Meal

@@ -2,15 +2,17 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../Firebase/firebase";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Firebase/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
    const [error,setError] = useState('')
-   
+   const navigatae = useNavigate()
+   const axiosPublic = useAxiosPublic()
   const {
     register,
     handleSubmit,
@@ -22,7 +24,18 @@ const Login = () => {
 const {googleLogin} = useContext(AuthContext)
   const handleGLogin = (media) => {
     media()
-    .then(res=>console.log(res.user))
+    .then(res=>{
+      console.log(res.user)
+      const userInfo = {
+        email: res.user.email,
+        name: res.user.displayName
+      }
+      axiosPublic.post('/users',userInfo)
+      .then(res=>{
+        console.log(res.data)
+        navigatae('/')
+      })
+    })
     .catch(err=>console.log(err))
   }
 
@@ -59,6 +72,7 @@ const {googleLogin} = useContext(AuthContext)
               showConfirmButton: false,
               timer: 1550
             });
+            navigatae('/')
       }
       })
       .catch(err=>setError(err.message))  
@@ -102,10 +116,12 @@ const {googleLogin} = useContext(AuthContext)
           <button className="btn mt-2 btn-outline">
             Login
           </button>
+          
           <button onClick={()=> handleGLogin(googleLogin)} className="btn mt-3">
-                  Continue With
-                  <FcGoogle className="text-xl"></FcGoogle>
-                </button>
+               Continue With
+            <FcGoogle className="text-xl"></FcGoogle>
+          </button>
+
         <p>New to here? <Link className="underline" to='/signUp' >Sign Up</Link> Now</p>
         </form>
       </div>

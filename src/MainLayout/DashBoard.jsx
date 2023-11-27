@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { RiProfileLine } from "react-icons/ri";
-import { FaHourglassEnd } from "react-icons/fa6";
+import { FaHourglassEnd, FaHouse } from "react-icons/fa6";
 import { MdOutlineRateReview } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { MdManageAccounts } from "react-icons/md";
@@ -66,7 +66,49 @@ const DashBoard = () => {
                 </li>
                     </> :
                     <>
+                    <li>
                     
+                    <NavLink to='/dashBoard/adminProfile'>
+                    <CgProfile></CgProfile>
+                        Admin profile</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/manageUser'>
+                    <MdManageAccounts />
+
+                        Manage users</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/addMeal'>
+                    <IoIosAddCircle></IoIosAddCircle>
+                        Add meal</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/allMeal'>
+                    <GiMeal></GiMeal>
+                        All meal</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/allReviews'>
+                    <MdRateReview></MdRateReview>
+                    All reviews</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/serveMeals'>
+                    <TbReservedLine></TbReservedLine>
+                    Serve meals</NavLink>
+                </li>
+                <li>
+                    
+                    <NavLink to='/dashBoard/upcomingMeals'>
+                    <MdUpcoming></MdUpcoming>
+                    Upcoming meals</NavLink>
+                </li>
                     </>
                 }
 
@@ -74,6 +116,12 @@ const DashBoard = () => {
                 <div className="divider"></div>
 
 
+                <li>
+                    
+                    <NavLink to='/'>
+                    <FaHouse></FaHouse>
+                        Home</NavLink>
+                </li>
                 <li>
                     
                     <NavLink to='/dashBoard/myProfile'>
