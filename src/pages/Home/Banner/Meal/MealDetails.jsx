@@ -27,10 +27,11 @@ console.log(meal);
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <img src={meal?.mealImage} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
+          <img src={meal?.image} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
           <div>
         
-            <h1 className="text-5xl font-bold">{user?.displayName}</h1>
+            <h1 className="text-5xl mb-4 font-bold">{meal?.title}</h1>
+            <h1 className="text-2xl">{user?.displayName}</h1>
             <span className="py-6">{meal?.description}</span> <br /> <br />
             <p className="text-xl">{meal?.mealTitle}</p>
          <h3><span className="font-serif font-semibold">Rating:</span> {meal?.rating} </h3>

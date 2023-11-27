@@ -1,14 +1,19 @@
 import { Input, Textarea, Typography } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
+import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddMeal = () => {
 
   // time and date
 
+ const {user} = useContext(AuthContext)
+
   const [currentTime, setCurrentTime] = useState(new Date());
-  
+  const axiosSecure = useAxiosSecure()
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
@@ -20,16 +25,28 @@ const AddMeal = () => {
   }, []);
 
 
-  // data fetch
-    // const axiosSecure = useAxiosSecure()
 
-    // axiosSecure.post('http://localhost:5173/allData')
-    // .then(res=>console.log(res.data))
+
     
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) =>
-    console.log(data);
 
+  const onSubmit = (data) => {
+    axiosSecure.post('/allData', data)
+      .then(response => {console.log('Data submitted successfully:', response.data)
+      if(response.data.acknowledged === true){
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `${data.title} Added succesfully`,
+            showConfirmButton: false,
+            timer: 1550
+          });
+          
+    }
+    })
+      .catch(error => console.error('Error submitting data:', error));
+  };
+  
 
     return (
         <div>
@@ -83,7 +100,6 @@ const AddMeal = () => {
                   <option value="defult" disabled>
                     Meal type
                   </option>
-                  <option>All meal</option>
                   <option>breakfast</option>
                   <option>lunch</option>
                   <option>dinner</option>
@@ -130,9 +146,9 @@ const AddMeal = () => {
                 </Typography>
                 <Input
                 {...register("name")} 
-                  
+                  defaultValue={user?.displayName}
                   size="lg"
-                  placeholder=""
+                  
                   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                   labelProps={{
                     className: "before:content-none after:content-none",
@@ -143,6 +159,7 @@ const AddMeal = () => {
                 </Typography>
                 <Input
                 {...register("email")} 
+                defaultValue={user?.email}
                   size="lg"
                   placeholder=""
                   className=" !border-t-blue-gray-200 focus:!border-t-gray-900"

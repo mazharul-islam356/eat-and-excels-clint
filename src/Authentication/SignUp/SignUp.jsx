@@ -129,6 +129,14 @@ const SignUp = () => {
             className="input input-bordered"
             {...register("name")}
           />
+          <label className="label">
+            <span className="label-text">Photo URL</span>
+          </label>
+          <input
+            placeholder="Photo URL"
+            className="input input-bordered"
+            {...register("image")}
+          />
 
           <label className="label">
             <span className="label-text">Email</span>

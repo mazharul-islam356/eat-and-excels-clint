@@ -91,12 +91,12 @@ const AllMeals = () => {
             
             const isSearchValue = searchValue.toLowerCase() === ""
                 ? item
-                : item.mealTitle.toLowerCase().includes(searchValue);
+                : item.title.toLowerCase().includes(searchValue);
 
 
             const isCategoryValue = category.toLowerCase() === ""
                 ? item
-                : item.mealType.toLowerCase().includes(category);
+                : item.type.toLowerCase().includes(category);
          
 
 
@@ -106,7 +106,7 @@ const AllMeals = () => {
             <div key={card._id}>
               <Card
                 key={card._id}
-                className="w-full h-[15rem]  max-w-[45rem] flex-row"
+                className="w-full h-[21rem]  max-w-[45rem] flex-row"
               >
                 <CardHeader
                   shadow={false}
@@ -114,7 +114,7 @@ const AllMeals = () => {
                   className="m-0 w-2/5 shrink-0 rounded-r-none"
                 >
                   <img
-                    src={card.mealImage}
+                    src={card.image}
                     className="h-full w-full object-cover"
                   />
                 </CardHeader>
@@ -130,17 +130,17 @@ const AllMeals = () => {
                     {card.title}
                   </Typography>
                   <Typography color="black" className=" font-normal">
-                    {card.mealTitle}
+                    {card.type}
                   </Typography>
                   <Typography color="gray" className=" font-normal">
                     {card.description}
                   </Typography>
                   <Typography color="gray" className=" font-normal">
-                    <span className="font-serif font-semibold">Price: </span> $
+                    <span className="font-serif text-black font-semibold">Price: </span> $
                     {card.price}
                   </Typography>
                   <Typography color="gray" className="mb-8 font-normal">
-                    <span className="font-serif font-semibold">Rating: </span>{" "}
+                    <span className="font-serif text-black  font-semibold">Rating: </span>{" "}
                     {card.rating}
                   </Typography>
                 </CardBody>

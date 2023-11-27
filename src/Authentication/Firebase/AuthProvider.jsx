@@ -50,13 +50,9 @@ const AuthProvider = ({children}) => {
                         localStorage.setItem('access-token',res.data.token)
                     }
                 })
-
             }
-            else{
-
-                // TODO: remove token
-                // do somthing
-                localStorage.removeItem('access-token')
+            else{ 
+            localStorage.removeItem('access-token')
             }
             setLoading(false)
             

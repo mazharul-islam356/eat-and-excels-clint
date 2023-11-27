@@ -9,10 +9,11 @@ import { GiMeal } from "react-icons/gi";
 import { MdRateReview } from "react-icons/md";
 import { TbReservedLine } from "react-icons/tb";
 import { MdUpcoming } from "react-icons/md";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="flex w-10/12 mx-auto">
@@ -66,49 +67,7 @@ const DashBoard = () => {
                 </li>
                     </> :
                     <>
-                    <li>
                     
-                    <NavLink to='/dashBoard/adminProfile'>
-                    <CgProfile></CgProfile>
-                        Admin profile</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/manageUser'>
-                    <MdManageAccounts />
-
-                        Manage users</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/addMeal'>
-                    <IoIosAddCircle></IoIosAddCircle>
-                        Add meal</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/allMeal'>
-                    <GiMeal></GiMeal>
-                        All meal</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/allReviews'>
-                    <MdRateReview></MdRateReview>
-                    All reviews</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/serveMeals'>
-                    <TbReservedLine></TbReservedLine>
-                    Serve meals</NavLink>
-                </li>
-                <li>
-                    
-                    <NavLink to='/dashBoard/upcomingMeals'>
-                    <MdUpcoming></MdUpcoming>
-                    Upcoming meals</NavLink>
-                </li>
                     </>
                 }
 
