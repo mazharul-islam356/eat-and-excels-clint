@@ -17,11 +17,12 @@ import AddMeal from "../pages/DashBoard/MyProfile/AddMeal";
 import AllMeal from "../pages/DashBoard/MyProfile/AllMeal";
 import AllReviews from "../pages/DashBoard/MyProfile/AllReviews";
 import ServeMeals from "../pages/DashBoard/MyProfile/ServeMeals";
+import { QueryClient } from "@tanstack/react-query";
 
 
 
 
-
+export const queryClient = new QueryClient();
 export const router = createBrowserRouter([
         {
           path: "/",
