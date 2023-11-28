@@ -3,8 +3,39 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../Authentication/Firebase/AuthProvider";
 import { SlLike } from "react-icons/sl";
 import { VscSend } from "react-icons/vsc";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const MealDetails = () => {
+  const axiosPublic = useAxiosPublic()
+
+  const [reviewData,setReviewData] = useState()
+
+  const handleText = e =>{
+    e.preventDefault();
+    const reviews = e.target.review.value
+    setReviewData(reviews)
+  }
+  const revieww = {reviewData}  
+  console.log(revieww);
+  
+  const handleReview = () =>{
+   
+    axiosPublic.post('/reviews',{reviewData})
+    .then(response => {console.log('Data submitted successfully:', response.data)
+      if(response.data.acknowledged === true){
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Grateful for your feedback.`,
+            showConfirmButton: false,
+            timer: 1550
+          });
+          
+    }
+    })
+
+  }
 
 
   const [meal,setMeal] = useState()
@@ -43,11 +74,21 @@ console.log(meal);
          <div className="text-xl my-4">
          <button><VscSend /></button>
          </div>
-         
+
             <Link to='/AllMeals'><button className="btn btn-outline">See All</button></Link>
           </div>
         </div>
       </div>
+
+      {/* ---------------review-------------- */}
+      <form onSubmit={handleText}>
+
+      <div className="mt-10 space-y-8">
+        <h1 className="text-2xl font-bold text-center">Share your review</h1>
+      <textarea name="review" placeholder="Share your review" className="textarea shadow-xl lg:ml-[550px] textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
+      </div>
+        <button onClick={handleReview} className="btn btn-outline mt-6 mb-8 lg:ml-[585px] btn-wide btn-sm">Submit</button>
+      </form>
     </div>
   );
 };

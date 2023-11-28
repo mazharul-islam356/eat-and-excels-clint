@@ -28,11 +28,6 @@ const useAxiosSecure = () => {
 
         console.log('status error in the interceptors', status);
 
-        // if(status === 401 || status === 403){
-        //     logOut()
-        //     navigate('/login')
-        // }
-
         return Promise.reject(error)
     })
 

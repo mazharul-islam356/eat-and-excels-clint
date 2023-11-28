@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AllMeal = () => {
 
@@ -17,6 +18,47 @@ const AllMeal = () => {
       }, [axiosSecure]);
 
 console.log(data);
+
+const [dataa,setDataa] = useState(data)
+
+// delete
+const handleDelete = (_id) => {
+  console.log(_id);
+
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      
+      axiosSecure
+      .delete(`allData/${_id}`)
+      .then((res) => setData(res.data))
+      .catch((err) => {
+        console.error(err)
+           
+        if (data.deletedCount > 0) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+  
+          const remaining = dataa.filter((job) => job._id !== _id);
+          setDataa(remaining);
+          console.log(remaining);
+        }
+      
+      
+      });
+
+         
+
+       
+    }
+  });
+};
 
     return (
         <div>
@@ -49,11 +91,13 @@ console.log(data);
             <td>{item.email}</td>
             <td>
                 
+                <Link to='/update'>
                 <button className="btn text-blue-600 text-xl ml-1 btn-xs"><FaEdit></FaEdit></button>
+                </Link>
             </td>
             <td>
                 
-                <button className="btn text-red-700 text-xl ml-1 btn-xs">
+                <button onClick={handleDelete} className="btn text-red-700 text-xl ml-1 btn-xs">
                 <MdDeleteForever />
                 </button>
             </td>

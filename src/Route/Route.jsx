@@ -6,7 +6,6 @@ import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
 import SignUp from "../Authentication/SignUp/SignUp";
 import MealDetails from "../pages/Home/Banner/Meal/MealDetails";
-import Payment from "../Membership&Payment/Payment/Payment";
 import AllMeals from "../pages/Meals/AllMeals";
 import DashBoard from "../MainLayout/DashBoard";
 import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
@@ -18,6 +17,9 @@ import AllMeal from "../pages/DashBoard/MyProfile/AllMeal";
 import AllReviews from "../pages/DashBoard/MyProfile/AllReviews";
 import ServeMeals from "../pages/DashBoard/MyProfile/ServeMeals";
 import { QueryClient } from "@tanstack/react-query";
+import Update from "../pages/Update&delete/Update";
+import Payment from "../pages/Payment/Payment";
+import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 
 
@@ -62,12 +64,17 @@ export const router = createBrowserRouter([
             path: '/payment/:type',
             element:<Payment></Payment>
            },
+           {
+            path:'/update',
+            element:<Update></Update>
+           }
           
           ]
         },
+        // admin route
         {
             path:'/dashBoard',
-            element:<DashBoard></DashBoard>,
+            element:<PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
             children:[
                 {
                 path:'myProfile',
