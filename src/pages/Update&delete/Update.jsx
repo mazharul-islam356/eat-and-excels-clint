@@ -11,6 +11,11 @@ const Update = () => {
 
     const update = useLoaderData()
     console.log(update);
+    
+
+  const {title,image,description,ingredients,like,price,rating,reviews,type} = update
+
+
 
     const axiosSecure = useAxiosSecure()
     const { register, handleSubmit } = useForm();
@@ -28,7 +33,7 @@ const Update = () => {
         };
       }, []);
   const onSubmit = (data) => {
-    axiosSecure.post('/allData', data)
+    axiosSecure.put('/allData', data)
       .then(response => {console.log('Data submitted successfully:', response.data)
       if(response.data.acknowledged === true){
         Swal.fire({
@@ -48,7 +53,6 @@ const Update = () => {
   };
 
 
-  
 
 
     return (
@@ -63,7 +67,7 @@ const Update = () => {
             </Typography>
             <Input
               {...register("title")}
-             
+             defaultValue={title}
               size="lg"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
@@ -75,7 +79,7 @@ const Update = () => {
             </Typography>
             <Input
             {...register("image")}
-             
+             defaultValue={image}
               size="lg"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
               labelProps={{
@@ -86,6 +90,7 @@ const Update = () => {
               Ingredients
             </Typography>
             <Input
+            defaultValue={ingredients}
             {...register("ingredients")}
               size="lg"
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -97,7 +102,7 @@ const Update = () => {
               Meal type
             </Typography>
             <select
-              defaultValue={"defult"}
+              defaultValue={type}
               {...register("type")} 
               className="select select-bordered w-96"
             >
@@ -113,6 +118,7 @@ const Update = () => {
             </Typography>
             <Input
               {...register("price")} 
+              defaultValue={price}
               size="lg"
               placeholder=""
               className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -125,7 +131,9 @@ const Update = () => {
             Description
             </Typography>
             <div className="w-96">
-              <Textarea {...register("description")}  label="Description" />
+              <Textarea
+              defaultValue={description}
+               {...register("description")}  label="Description" />
             </div>
           </div>
         </div>
@@ -136,6 +144,7 @@ const Update = () => {
               Rating
             </Typography>
             <Input
+            defaultValue={rating}
             {...register("rating")}
               
               size="lg"
@@ -176,6 +185,7 @@ const Update = () => {
               Like
             </Typography>
             <Input
+            defaultValue={like}
               {...register("like")} 
               size="lg"
               placeholder=""
@@ -188,6 +198,7 @@ const Update = () => {
               Reviews
             </Typography>
             <Input
+            defaultValue={reviews}
               {...register("reviews")} 
               size="lg"
               placeholder=""
@@ -218,7 +229,7 @@ const Update = () => {
         </div>
       </div>
       <div className="flex mt-8">
-      <button className=" btn lg:ml-[600px] btn-wide mb-10 mt-2 btn-outline">
+      <button className=" btn lg:ml-[400px] btn-wide mb-10 mt-2 btn-outline">
         Update Meal
       </button>
      

@@ -4,61 +4,48 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAllData from "../../../hooks/useAllData";
 
 const AllMeal = () => {
 
-    const [data,setData] = useState()
+    
     const axiosSecure = useAxiosSecure()
+  const [meals,refetch] = useAllData()
+  
 
-    useEffect(() => {
-        axiosSecure
-          .get("/allData")
-          .then((res) => setData(res.data))
-          .catch((err) => console.error(err));
-      }, [axiosSecure]);
 
-console.log(data);
-
-const [dataa,setDataa] = useState(data)
 
 // delete
-const handleDelete = (_id) => {
-  console.log(_id);
-
+const handleDelete = (meal) => {
   Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      
-      axiosSecure
-      .delete(`allData/${_id}`)
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.error(err)
-           
-        if (data.deletedCount > 0) {
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
-  
-          const remaining = dataa.filter((job) => job._id !== _id);
-          setDataa(remaining);
-          console.log(remaining);
-        }
-      
-      
-      });
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+  }).then(async (result) => {
+      if (result.isConfirmed) {
+          const res = await axiosSecure.delete(`/allData/${meal._id}`);
+          // console.log(res.data);
+          if (res.data.deletedCount > 0) {
+              // refetch to update the ui
+              refetch()
+              Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: `${meal.title} has been deleted`,
+                  showConfirmButton: false,
+                  timer: 1500
+              });
+          }
 
-         
 
-       
-    }
+      }
   });
-};
+}
+
 
     return (
         <div>
@@ -81,7 +68,7 @@ const handleDelete = (_id) => {
     <tbody>
         
       {
-        data?.map((item,i)=><tr key={item._id}>
+        meals?.map((item,i)=><tr key={item._id}>
             <th>{i + 1}</th> 
             {/* TODO: add dynamecly value */}
             <td>{item.title}</td> 
@@ -91,13 +78,13 @@ const handleDelete = (_id) => {
             <td>{item.email}</td>
             <td>
                 
-                <Link to='/update'>
+                <Link to={`/dashboard/update/${item._id}`}>
                 <button className="btn text-blue-600 text-xl ml-1 btn-xs"><FaEdit></FaEdit></button>
                 </Link>
             </td>
             <td>
                 
-                <button onClick={handleDelete} className="btn text-red-700 text-xl ml-1 btn-xs">
+                <button onClick={()=>handleDelete(item)} className="btn text-red-700 text-xl ml-1 btn-xs">
                 <MdDeleteForever />
                 </button>
             </td>

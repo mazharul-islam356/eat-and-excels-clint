@@ -6,6 +6,9 @@ import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddMeal = () => {
+  const { register, handleSubmit:handleSubmit1 } =useForm()
+  const {register:register2, handleSubmit:handleSubmit2}=useForm()
+
 
   // time and date
 
@@ -26,10 +29,12 @@ const AddMeal = () => {
 
 
 
-    
-    const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+
+
+
+  const onSubmit1 = (data) => {
+    console.log(data);
     axiosSecure.post('/allData', data)
       .then(response => {console.log('Data submitted successfully:', response.data)
       if(response.data.acknowledged === true){
@@ -44,13 +49,33 @@ const AddMeal = () => {
     }
     })
       .catch(error => console.error('Error submitting data:', error));
+
+  };
+  
+  const onSubmit2 = (data) => {
+
+    console.log(data);
+    // axiosSecure.post('/upcomming', data)
+    //   .then(response => {console.log('Data submitted successfully:', response.data)
+    //   if(response.data.acknowledged === true){
+    //     Swal.fire({
+    //         position: "center",
+    //         icon: "success",
+    //         title: `${data.title} Added succesfully`,
+    //         showConfirmButton: false,
+    //         timer: 1550
+    //       });
+          
+    // }
+    // })
+    //   .catch(error => console.error('Error submitting data:', error));
   };
   
 
     return (
         <div>
             <h2 className="text-3xl text-center mt-8 underline font-serif font-semibold">Add Meal</h2>
-           <form onSubmit={handleSubmit(onSubmit)}>
+           <form>
           <div className="lg:flex gap-10 justify-evenly">
             <div className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
               <div className="mb-1 flex flex-col gap-6">
@@ -69,6 +94,7 @@ const AddMeal = () => {
                   Meal image
                 </Typography>
                 <Input
+                name="image2"
                 {...register("image")}
                  
                   size="lg"
@@ -120,7 +146,10 @@ const AddMeal = () => {
                 Description
                 </Typography>
                 <div className="w-96">
-                  <Textarea {...register("description")}  label="Description" />
+                  <Textarea {...register("description")} 
+                  
+
+                  label="Description" />
                 </div>
               </div>
             </div>
@@ -195,7 +224,8 @@ const AddMeal = () => {
                 <Typography variant="h6" color="blue-gray" className="-mb-3">
                   Time:
                 </Typography>
-                <input {...register("time")} type="text" value={currentTime.toLocaleTimeString()} />
+                <input {...register("time")}
+                  type="text" value={currentTime.toLocaleTimeString()} />
                 {/* <p {...register("time")} >{currentTime.toLocaleTimeString()}</p> */}
 
                 <div className="divider divider-horizontal"></div>
@@ -204,21 +234,22 @@ const AddMeal = () => {
                   Date:
                 </Typography>
 
-                <input {...register("date")} type="text" value={currentTime.toLocaleDateString()} />
+                <input {...register("date")}
+                  type="text" value={currentTime.toLocaleDateString()} />
 
                 </div>
                 
-                
               </div>
+              
             </div>
+   
           </div>
-          <div className="flex mt-8">
-          <button className=" btn lg:ml-44 btn-wide mb-10 mt-2 btn-outline">
-            Add Meal
-          </button>
-          <button className="btn ml-20 btn-wide mb-10 mt-2 btn-outline">
-            Upcoming Meal
-          </button>
+          <div className="flex gap-20 mb-8 mt-2">
+
+          <button onClick={handleSubmit1(onSubmit1)} className="btn btn-outline btn-wide btn-sm lg:ml-[300px]">Add  meal</button>
+          <button onClick={handleSubmit2(onSubmit2)} className="btn btn-outline btn-wide btn-sm">Upcoming  meal</button>
+
+       
           </div>
         </form>
         </div>

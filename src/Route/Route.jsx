@@ -3,7 +3,6 @@ import LayOut from "../MainLayout/LayOut";
 import Home from "../pages/Home/Home";
 import Login from "../Authentication/Login/Login";
 import Meals from "../pages/Meals/Meals";
-import UpcomingMeals from "../pages/UpcomingMeals/UpcomingMeals";
 import SignUp from "../Authentication/SignUp/SignUp";
 import MealDetails from "../pages/Home/Banner/Meal/MealDetails";
 import AllMeals from "../pages/Meals/AllMeals";
@@ -20,6 +19,7 @@ import { QueryClient } from "@tanstack/react-query";
 import Update from "../pages/Update&delete/Update";
 import Payment from "../pages/Payment/Payment";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import Upcoming from "../pages/DashBoard/MyProfile/Upcoming";
 
 
 
@@ -50,10 +50,7 @@ export const router = createBrowserRouter([
                 path:'/allMeals',
                 element:<AllMeals></AllMeals>
             },
-            {
-                path:'/upComingMeals',
-                element:<UpcomingMeals></UpcomingMeals>
-            },
+            
            {
             path: '/mealDetails/:id',
             element:<MealDetails></MealDetails>,
@@ -64,10 +61,7 @@ export const router = createBrowserRouter([
             path: '/payment/:type',
             element:<Payment></Payment>
            },
-           {
-            path:'/update',
-            element:<Update></Update>
-           }
+         
           
           ]
         },
@@ -108,6 +102,15 @@ export const router = createBrowserRouter([
                 path:'serveMeals',
                 element:<ServeMeals></ServeMeals>
             },
+            {
+                path:'update/:id',
+                element:<Update></Update>,
+                loader: ({params})=> fetch(`http://localhost:5001/allData/${params.id}`)
+            },
+            {
+                path:'upcoming',
+                element:<Upcoming></Upcoming>
+            }
            
         ]
         }

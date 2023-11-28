@@ -16,7 +16,6 @@ import { NavLink } from "react-router-dom";
 import { IoRestaurant } from "react-icons/io5";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 
-const settings = ["Dashboard", "Logout"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,6 +37,8 @@ function Navbar() {
   };
 
   const {user,logOut} = React.useContext(AuthContext)
+const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
+
   console.log(user);
   const handleLogOut = () => {
     logOut()
