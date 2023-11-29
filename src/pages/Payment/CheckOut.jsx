@@ -1,31 +1,57 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAllData from "../../hooks/useAllData";
 import { useContext, useEffect, useState } from "react";
-import useCart from "../../hooks/useCart";
 import { AuthContext } from "../../Authentication/Firebase/AuthProvider";
 
+
 const CheckOut = () => {
+
+  const [items, setItems] = useState([]);
+const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState('');
+  const [transictionid,setTransictionid] = useState()
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure()
   const {user} = useContext(AuthContext)
-const [cart] = useCart()
-console.log(cart);
+
+const [mappedData,setMappedData] = useState()
+
+
+
+  useEffect(() => {
+    fetch('/public/memberShip.json')
+      .then(response => response.json())
+      .then(data => {
+        setItems(data);
+        setLoading(false);
+        const mappedData = data.map(item =>setMappedData(item));
+        
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+  
+  console.log(mappedData);
+const {price} = mappedData || {}
+console.log(price);
+console.log(items);
+
 const [clientSecret,setclientSecret] = useState('')
-const totalPrice = cart.reduce((total,item)=>total+item.price,0)
+// const totalPrice = mappedData.reduce((total,item)=>total+item.price,0)
 
 useEffect(() => {
-  if (totalPrice > 0) {
-      axiosSecure.post('/create-payment-intent', { price: totalPrice })
+  if (price > 0) {
+      axiosSecure.post('/create-payment-intent', { price: price })
           .then(res => {
               console.log(res.data.clientSecret);
               setclientSecret(res.data.clientSecret);
           })
   }
 
-}, [axiosSecure, totalPrice])
+}, [axiosSecure,price])
   
 
 
@@ -72,6 +98,10 @@ useEffect(() => {
   
     // Process the paymentIntent object here
     console.log('payment intent', paymentIntent);
+    if(paymentIntent.status === 'succeeded'){
+      console.log('tansction id'),paymentIntent.id;
+      setTransictionid(paymentIntent.id)
+    }
   }
   
 
@@ -101,6 +131,7 @@ useEffect(() => {
         Pay
       </button>
       <p className="text-red-600">{error}</p>
+      {transictionid && <p className="text-green-600 py-2 pt-4 "><span className="text-black text-xl font-bold ">Your transiction id:</span> {transictionid}</p>}
     </form>
     </div>
   );
