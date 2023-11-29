@@ -20,6 +20,7 @@ import Update from "../pages/Update&delete/Update";
 import Payment from "../pages/Payment/Payment";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Upcoming from "../pages/DashBoard/MyProfile/Upcoming";
+import AdminProfile from "../pages/DashBoard/MyProfile/AdminProfile";
 
 
 
@@ -54,7 +55,7 @@ export const router = createBrowserRouter([
            {
             path: '/mealDetails/:id',
             element:<MealDetails></MealDetails>,
-            loader: () => fetch('http://localhost:5001/allData')
+            loader: () => fetch('https://assingment-12-server-roan.vercel.app/allData')
            },
         
            {
@@ -105,11 +106,15 @@ export const router = createBrowserRouter([
             {
                 path:'update/:id',
                 element:<Update></Update>,
-                loader: ({params})=> fetch(`http://localhost:5001/allData/${params.id}`)
+                loader: ({params})=> fetch(`https://assingment-12-server-roan.vercel.app/allData/${params.id}`)
             },
             {
                 path:'upcoming',
                 element:<Upcoming></Upcoming>
+            },
+            {
+                path:'adminProfile',
+                element:<AdminProfile></AdminProfile>
             }
            
         ]

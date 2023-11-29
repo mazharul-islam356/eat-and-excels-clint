@@ -24,7 +24,7 @@ const TabSection = () => {
         .then(res => setData(res.data))
         .catch(err => console.error(err));
     }, [axiosSecure]);
-    // console.log(data);  
+    console.log(data);  
 
 
   return (

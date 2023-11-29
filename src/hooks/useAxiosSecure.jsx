@@ -4,7 +4,7 @@ import axios from "axios";
 // import { AuthContext } from "../Authentication/Firebase/AuthProvider";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5001'
+    baseURL: 'https://assingment-12-server-roan.vercel.app'
 })
 
 const useAxiosSecure = () => {
