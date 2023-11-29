@@ -2,6 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Authentication/Firebase/AuthProvider";
+import { useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 const CheckOut = () => {
@@ -17,42 +19,67 @@ const [loading, setLoading] = useState(true);
   const {user} = useContext(AuthContext)
 
 const [mappedData,setMappedData] = useState()
+const {id}= useParams()
+console.log(id);
 
 
 
-  useEffect(() => {
-    fetch('/public/memberShip.json')
-      .then(response => response.json())
-      .then(data => {
-        setItems(data);
-        setLoading(false);
-        const mappedData = data.map(item =>setMappedData(item));
+const {data: member} = useQuery({
+  queryKey: [user?.email,'member'],
+  queryFn: async () =>{
+      const res = await axiosSecure.get(`/memberShipp`)
+      return res.data
+  }
+})
+ console.log(member);
+
+const findData = member?.find(item=> item._id === id )
+console.log(findData);
+
+
+
+        // axiosSecure.get('/memberShipp')
+        // .then(res=>{
+        // console.log(res.data)
+        // setItems(res.data);
+        // setLoading(false);
+        // return 
+        // }
         
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+        // )
+
   
   console.log(mappedData);
+
+
 const {price} = mappedData || {}
-console.log(price);
+console.log(price,'priceeeee');
 console.log(items);
 
 const [clientSecret,setclientSecret] = useState('')
 // const totalPrice = mappedData.reduce((total,item)=>total+item.price,0)
 
 useEffect(() => {
-  if (price > 0) {
-      axiosSecure.post('/create-payment-intent', { price: price })
+  
+      axiosSecure.post('/create-payment-intent', { price: findData?.price })
           .then(res => {
               console.log(res.data.clientSecret);
               setclientSecret(res.data.clientSecret);
           })
-  }
-
-}, [axiosSecure,price])
   
+
+}, [axiosSecure,findData?.price])
+  
+
+
+const {mutate: payHistory} = useMutation({
+  mutationKey: async (memberShipPay) =>{
+    return await axiosSecure.post(
+      '/memberShipPay'
+    )
+  }
+})
+
 
 
   const handleSubmit = async (e) => {
@@ -101,11 +128,20 @@ useEffect(() => {
     if(paymentIntent.status === 'succeeded'){
       console.log('tansction id'),paymentIntent.id;
       setTransictionid(paymentIntent.id)
+      const memberShipPay = {
+        date: new Date(),
+        email: user?.email,
+        price: findData?.price,
+        transictionid: paymentIntent.id,
+        memberShipName: findData?.name
+      };
+      payHistory(memberShipPay)
     }
   }
-  
-
   };
+
+
+
 
 
   return (
@@ -127,7 +163,7 @@ useEffect(() => {
           },
         }}
       />
-      <button className="btn btn-sm btn-outline mt-2" type="submit" disabled={!stripe || !clientSecret}>
+      <button className="btn btn-sm btn-outline mt-2" type="submit" disabled={!stripe }>
         Pay
       </button>
       <p className="text-red-600">{error}</p>

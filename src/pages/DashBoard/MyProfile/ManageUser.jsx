@@ -46,7 +46,7 @@ const ManageUser = () => {
         <h1 className="text-3xl">Total users: {users.length}</h1>
             </div>
 
-            <div className="overflow-x-auto ml-20 mt-6">
+            <div className="lg:overflow-x-auto  lg:ml-20 mt-6">
   <table className="table">
     {/* head */}
     <thead>

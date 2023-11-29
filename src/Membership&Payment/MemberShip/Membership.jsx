@@ -7,6 +7,7 @@ import {
   } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
   function CheckIcon() {
     return (
@@ -26,28 +27,27 @@ import { Link } from "react-router-dom";
       </svg>
     );
   }
-
-
   
 
 const Membership = () => {
 
     const [items,setItem] = useState([])
-
+  const axiosPublic = useAxiosPublic()
     
-  useEffect(()=>{
-      fetch('/memberShip.json')
-      .then(res=>res.json())
-      .then(data=>setItem(data))
-  },[])
+  useEffect(() => {
+    axiosPublic.get('/memberShipp')
+      .then(res => setItem(res.data))
+      .catch(err => console.error(err));
+  }, [axiosPublic]);
+ 
 console.log(items);
 
 
     return (
-        <div className="my-4 text-w text-y md:grid grid-cols-3 justify-center items-center lg:ml-20">
+        <div className="my-4 text-w text-y md:grid grid-cols-3 justify-center items-center ml-10 lg:ml-20">
             {
-            items.map(item=><Link to={`payment/${item.type}`} key={item._id}  >
-                <Card  color={item.colorCode} variant="gradient" className="w-full max-h-[35rem] max-w-[20rem] p-8">
+            items.map(item=><Link to={`payment/${item._id}`} key={item._id}  >
+                <Card  color={item.colorCode} variant="gradient" className="w-full mb-6 lg:mb-0 max-h-[35rem] max-w-[20rem] p-8">
                 <CardHeader
                   floated={false}
                   shadow={false}

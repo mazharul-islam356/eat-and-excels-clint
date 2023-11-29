@@ -58,7 +58,7 @@ console.log(meal);
     <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
-          <img src={meal?.image} className="max-w-sm rounded-2xl shadow-2xl mr-4" />
+          <img src={meal?.image} className="lg:max-w-sm rounded-2xl shadow-2xl lg:mr-4" />
           <div>
         
             <h1 className="text-5xl mb-4 font-bold">{meal?.title}</h1>
@@ -85,9 +85,9 @@ console.log(meal);
 
       <div className="mt-10 space-y-8">
         <h1 className="text-2xl font-bold text-center">Share your review</h1>
-      <textarea name="review" placeholder="Share your review" className="textarea shadow-xl lg:ml-[550px] textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
+      <textarea name="review" placeholder="Share your review" className="textarea shadow-xl lg:ml-[550px] textarea-bordered textarea-lg w-full lg:max-w-xs" ></textarea>
       </div>
-        <button onClick={handleReview} className="btn btn-outline mt-6 mb-8 lg:ml-[585px] btn-wide btn-sm">Submit</button>
+        <button onClick={handleReview} className="btn btn-outline mt-6 mb-8 lg:ml-[585px] ml-20 btn-wide btn-sm">Submit</button>
       </form>
     </div>
   );

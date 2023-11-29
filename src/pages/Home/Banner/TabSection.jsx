@@ -28,7 +28,7 @@ const TabSection = () => {
 
 
   return (
-    <div>
+    <div className="p-4 text-center mt-4">
       <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>
           <Tab>All Meal</Tab>
@@ -36,7 +36,7 @@ const TabSection = () => {
           <Tab>Lunch</Tab>
           <Tab>Dinner</Tab>
         </TabList>
-        <TabPanel >
+        <TabPanel className='my-4'>
             <div className="grid md:grid-cols-3">
             {
                 data.map(item=><TabsCard item={item} key={item._id}></TabsCard>)

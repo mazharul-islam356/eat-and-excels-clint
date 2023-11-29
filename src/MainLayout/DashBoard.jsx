@@ -15,7 +15,7 @@ const DashBoard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex w-10/12 mx-auto">
+    <div className="flex lg:w-10/12 mx-auto">
       <div className="w-64 bg-blue-600 text-white min-h-screen">
         <ul className="menu">
           {isAdmin ? (

@@ -49,7 +49,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
 
 
   return (
-    <AppBar position="static">
+    <AppBar style={{ backgroundColor: "#116A7B" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -99,11 +99,52 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
                 display: { xs: "block", md: "none" },
               }}
             >
+
+              <div>
+              <NavLink to='/'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}    
+            >
+             Home
+            </Button>
+            </NavLink>
+
+            <NavLink to='/login'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}    
+            >
+             Join Us
+            </Button>
+            </NavLink>
+
+            
+            <NavLink to='/AllMeals'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}    
+            >
+             Meals
+            </Button>
+            </NavLink>
+
+
+            <NavLink to='/UpcomingMeals'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}        
+            >
+              Upcoming Meals
+            </Button>
+           </NavLink>
+              </div>
               
             </Menu>
+            
           </Box>
 
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          
           <Typography
             variant="h5"
             noWrap
@@ -121,7 +162,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
           >
             Eats & Excells
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex",marginLeft: 350  } }}>
 
 
           <NavLink to='/'>

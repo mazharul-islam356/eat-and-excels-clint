@@ -116,7 +116,7 @@ const SignUp = () => {
     return (
         <div className="my-10">
       <h1 className="text-3xl text-center">Sign Up Now!</h1>
-      <div className="py-4 ml-[36rem]">
+      <div className="py-4 lg:ml-[36rem]">
         <form
           className="card-body card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           onSubmit={handleSubmit(onSubmit)}

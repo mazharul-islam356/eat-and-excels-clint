@@ -21,6 +21,7 @@ import Payment from "../pages/Payment/Payment";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Upcoming from "../pages/DashBoard/MyProfile/Upcoming";
 import AdminProfile from "../pages/DashBoard/MyProfile/AdminProfile";
+import ErrorPage from "../pages/Error/ErrorPage";
 
 
 
@@ -59,7 +60,7 @@ export const router = createBrowserRouter([
            },
         
            {
-            path: '/payment/:type',
+            path: '/payment/:id',
             element:<Payment></Payment>
            },
          
@@ -118,7 +119,11 @@ export const router = createBrowserRouter([
             }
            
         ]
-        }
+        },
+        {
+            path: "*",
+            element: <ErrorPage></ErrorPage>
+          }
         
 
         

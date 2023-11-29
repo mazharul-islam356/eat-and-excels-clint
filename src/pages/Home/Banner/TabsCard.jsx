@@ -5,7 +5,7 @@ const TabsCard = ({item}) => {
   console.log(item);
     const {date,description,email,image,ingredients,like,name,price,rating,reviews,time,title,type,_id} = item
   return (
-    <div className="grid lg:grid-cols-3" >
+    <div className="grid mb-8 mt-4 lg:grid-cols-3" >
       <div className="card w-96 h-[600px] bg-base-100 shadow-xl">
         <figure>
           <img
