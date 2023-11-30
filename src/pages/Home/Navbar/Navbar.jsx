@@ -11,10 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "react-router-dom";
 import { IoRestaurant } from "react-icons/io5";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
+import { FaBell } from "react-icons/fa6";
 
 
 function Navbar() {
@@ -39,6 +39,9 @@ function Navbar() {
   const {user,logOut} = React.useContext(AuthContext)
 const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
 
+
+
+
   console.log(user);
   const handleLogOut = () => {
     logOut()
@@ -52,7 +55,8 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
     <AppBar style={{ backgroundColor: "#116A7B" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          <img className="w-12 mr-2" src="/public/logo.png" alt="" />
           <Typography
             variant="h6"
             noWrap
@@ -162,7 +166,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
           >
             Eats & Excells
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex",marginLeft: 350  } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex",marginLeft: 300  } }}>
 
 
           <NavLink to='/'>
@@ -173,17 +177,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
              Home
             </Button>
             </NavLink>
-
-            <NavLink to='/login'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}    
-            >
-             Join Us
-            </Button>
-            </NavLink>
-
-            
+  
             <NavLink to='/AllMeals'>
             <Button
               onClick={handleCloseNavMenu}
@@ -192,7 +186,6 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
              Meals
             </Button>
             </NavLink>
-
 
             <NavLink to='/dashBoard/upcoming'>
             <Button
@@ -203,7 +196,20 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
             </Button>
            </NavLink>
 
+           <NavLink to='/login'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}    
+            >
+             Join Us
+            </Button>
+            </NavLink>
+
+
           </Box>
+
+          
+          <button className="mr-8 text-xl mt-1"><FaBell></FaBell></button>
 
 
 {/* Profile and dashboard */}
@@ -236,6 +242,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
 {settings.map((setting) => (
   
     <MenuItem key={setting} onClick={handleCloseUserMenu}>
+      
       {setting === "Logout" ? (
         <NavLink onClick={handleLogOut} to={!user && '/login'}>
           <Typography textAlign="center">{user ? 'Logout' : 'Login'}</Typography>

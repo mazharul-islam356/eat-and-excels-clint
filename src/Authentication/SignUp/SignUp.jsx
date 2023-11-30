@@ -9,7 +9,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
 
-    const {signUp,googleLogin} = useContext(AuthContext)
+    const {signUp,googleLogin,updateUserProfile} = useContext(AuthContext)
   const navigatae = useNavigate()
   const axiosPublic = useAxiosPublic()
 
@@ -44,6 +44,7 @@ const SignUp = () => {
     const name = data.name;
     const email = data.email;
     const pass = data.pass;
+    const photoURL = data.image
     console.log(name,email,pass);
     if(pass.length < 6){
       toast.error('Password should be at least 6 characters')
@@ -66,10 +67,22 @@ const SignUp = () => {
           // user entry on database
           const userInfo = {
             name: name,
-            email: email
+            email: email,
+            photoURL :photoURL
 
           }
           axiosPublic.post('/users',userInfo)
+          updateUserProfile(data.name, data.image)
+          .then(()=>{
+            console.log('updated');
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "User updated succesfully",
+              showConfirmButton: false,
+              timer: 1550
+            });
+          })
           .then(res => {
             if(res.data.insertedId){
               console.log('user added to the database');

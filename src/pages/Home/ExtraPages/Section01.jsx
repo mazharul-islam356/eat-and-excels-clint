@@ -7,7 +7,7 @@ import { FaUserCircle } from "react-icons/fa";
 const Section01 = () => {
   return (
     <div>
-     <h1 className="text-4xl text-center font-sans mt-10">Key Features</h1>
+     <h1 className="text-4xl rounded-3xl shadow-[#4c9fb0] shadow-sm  w-72 p-2 mx-auto text-center font-sans mt-10">Key Features</h1>
 
         <div className='lg:h-[400px]  rounded-lg mb-12'>
       <div className="grid lg:grid-cols-3 justify-center items-center lg:ml-14  ">

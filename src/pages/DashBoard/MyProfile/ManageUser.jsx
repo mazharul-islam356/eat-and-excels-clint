@@ -41,13 +41,13 @@ const ManageUser = () => {
     return (
         <div>
 
-        <div className="flex justify-evenly mt-8">
+        <div className="flex  justify-evenly mt-8">
         <h1 className="text-3xl">All users</h1>
         <h1 className="text-3xl">Total users: {users.length}</h1>
             </div>
 
-            <div className="lg:overflow-x-auto  lg:ml-20 mt-6">
-  <table className="table">
+            <div className="lg:overflow-x-auto  lg:ml-20  mt-6">
+  <table className="table ">
     {/* head */}
     <thead>
       <tr>
@@ -58,7 +58,7 @@ const ManageUser = () => {
         <th>Status</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody className="max-w-4">
       
       {
         users.map((user,i)=><tr key={user._id}>

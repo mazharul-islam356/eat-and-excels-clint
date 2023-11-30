@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import {  GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import {  GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "./firebase";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
@@ -18,6 +18,12 @@ const AuthProvider = ({children}) => {
     const googleLogin = () => {
         setLoading(true)
        return signInWithPopup(auth,googleProvider)
+    }
+
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        });
     }
 
 
@@ -42,7 +48,8 @@ const AuthProvider = ({children}) => {
             if(currentUser){
                 // get token
                 const userInfo = {
-                    email: currentUser.email
+                    email: currentUser.email,
+                    photoURL:currentUser.photoURL
                 }
                 axiosPublic.post('/jwt',userInfo)
                 .then(res=>{
@@ -57,7 +64,7 @@ const AuthProvider = ({children}) => {
             setLoading(false)
             
         })
-    },[])
+    },[axiosPublic])
 
 
     const authintication = {
@@ -65,6 +72,7 @@ const AuthProvider = ({children}) => {
         googleLogin,
         signUp,
         logOut,
+        updateUserProfile,
         loading
     }
 

@@ -9,6 +9,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MealDetails = () => {
   const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
 
   const [reviewData,setReviewData] = useState()
 
@@ -42,31 +43,53 @@ const MealDetails = () => {
     console.log(id)
 
     console.log(id);
-  
 
     const detailsData = useLoaderData()
     console.log(detailsData);
-    axiosPublic.put('/like', id)
-      .then(response => {console.log('Data submitted successfully:', response.data)
-      if(response.data.acknowledged === true){
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${id.title} Added succesfully`,
-            showConfirmButton: false,
-            timer: 1550
-          });         
-    }
-    })
-      .catch(error => console.error('Error submitting data:', error));
-   
+
     
+    const handleSend = (meal) =>{
+      const requestedMeal = {
+        mealId: meal._id,
+        email: user?.email,
+        mealTitle: meal.title
+        
+      }
+  
+      axiosSecure.post('/send',requestedMeal)
+      .then(res=>{
+        console.log(res.data)
+  
+        if(res.data.acknowledged === true){
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `Send succesfully`,
+              showConfirmButton: false,
+              timer: 1550
+            });         
+      }
+      })
+        
+    
+    }
 
-    const handleLike = async () => {
 
-     console.log(id);
-      
-    };
+    // axiosPublic.put('/like', id)
+    //   .then(response => {console.log('Data submitted successfully:', response.data)
+    //   if(response.data.acknowledged === true){
+    //     Swal.fire({
+    //         position: "center",
+    //         icon: "success",
+    //         title: `${id.title} Added succesfully`,
+    //         showConfirmButton: false,
+    //         timer: 1550
+    //       });         
+    // }
+    // })
+    //   .catch(error => console.error('Error submitting data:', error));
+   
+  
 
     
 
@@ -75,15 +98,7 @@ useEffect(()=>{
     setMeal(findProducts)
 },[id,detailsData])
 console.log(meal);
-
-  const { user } = useContext(AuthContext);
-
-
-
-  // like
-
-
-
+const { user } = useContext(AuthContext);
 
 
   
@@ -102,13 +117,13 @@ console.log(meal);
          <h3><span className="font-serif font-semibold">Price:</span> ${meal?.price} </h3>
          <h3><span className="font-serif font-semibold">Post time:</span> {meal?.time} </h3>
         {user &&  <div className="text-xl my-4">
-         <button onClick={handleLike}><SlLike /></button>
+         <button><SlLike /></button>
          </div>}
          <div className="text-xl my-4">
-         <button><VscSend /></button>
+         <button className="btn btn-sm btn-outline" onClick={()=>handleSend(meal)} >Send request<VscSend /></button>
          </div>
 
-            <Link to='/AllMeals'><button className="btn btn-outline">See All</button></Link>
+            <Link to='/AllMeals'><button className="btn btn-wide btn-outline">See All</button></Link>
           </div>
         </div>
       </div>

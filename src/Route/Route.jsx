@@ -61,10 +61,10 @@ export const router = createBrowserRouter([
         
            {
             path: '/payment/:id',
-            element:<PrivetRoute><Payment></Payment></PrivetRoute>
+            element:<PrivetRoute><Payment></Payment></PrivetRoute>,
+           
+            
            },
-         
-          
           ]
         },
         // admin route

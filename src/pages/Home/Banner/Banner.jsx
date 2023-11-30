@@ -58,7 +58,7 @@ const Banner = () => {
         className="hero  h-[600px]"
         style={{ 
           backgroundImage:
-            "url(https://i.ibb.co/0rCWRxJ/9585811-37378.jpg)",
+            "url(https://i.ibb.co/6tSkbd0/flat-lay-charts-organic-food-lunch-boxes.jpg)",
             borderRadius: "10px"
         }}
       >

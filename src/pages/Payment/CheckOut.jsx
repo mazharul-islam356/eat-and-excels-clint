@@ -69,7 +69,6 @@ useEffect(() => {
   
 
 }, [axiosSecure,findData?.price])
-  
 
 
 const {mutate: payHistory} = useMutation({
@@ -133,9 +132,13 @@ const {mutate: payHistory} = useMutation({
         email: user?.email,
         price: findData?.price,
         transictionid: paymentIntent.id,
-        memberShipName: findData?.name
+        memberShipName: findData?.name,
+        status: 'pending'
       };
-      payHistory(memberShipPay)
+
+      const res = await axiosSecure.post('/payments',memberShipPay)
+      console.log('payment saved',res);
+      
     }
   }
   };
@@ -146,7 +149,11 @@ const {mutate: payHistory} = useMutation({
 
   return (
     <div>
-      <form className="shadow-lg p-4" onSubmit={handleSubmit}>
+      
+      <form className="shadow-lg w-[600px] mx-auto p-12" onSubmit={handleSubmit}>
+      <h1 className="text-center uppercase text-light-blue-500 font-bold mb-2 text-2xl">{findData?.name}</h1>
+      <h1 className="text-center"><span className="font-serif text-xl font-semibold ">Amount:</span> {findData?.price}$</h1>
+      <h1 className="text-center"><span className="font-serif text-xl font-semibold ">Benifit:</span> {findData?.benefits01}</h1>
       <CardElement
         options={{
           style: {

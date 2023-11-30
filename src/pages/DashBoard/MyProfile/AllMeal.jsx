@@ -7,9 +7,8 @@ import Swal from "sweetalert2";
 import useAllData from "../../../hooks/useAllData";
 
 const AllMeal = () => {
-
-    
-    const axiosSecure = useAxiosSecure()
+ 
+  const axiosSecure = useAxiosSecure()
   const [meals,refetch] = useAllData()
   
 
@@ -50,7 +49,7 @@ const handleDelete = (meal) => {
     return (
         <div>
             <h1 className="text-3xl text-center py-6 underline">All Meal</h1>
-           <div className="overflow-x-auto ml-10">
+           <div className="overflow-x-auto lg:max-w-full max-w-[360px] mx-auto ml-10">
   <table className="table table-xs">
     <thead>
       <tr>
