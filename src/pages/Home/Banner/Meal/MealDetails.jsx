@@ -5,22 +5,20 @@ import { SlLike } from "react-icons/sl";
 import { VscSend } from "react-icons/vsc";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MealDetails = () => {
   const axiosPublic = useAxiosPublic()
 
   const [reviewData,setReviewData] = useState()
 
-  const handleText = e =>{
+  const handleText = e => {
     e.preventDefault();
-    const reviews = e.target.review.value
-    setReviewData(reviews)
-  }
-  const revieww = {reviewData}  
-  console.log(revieww);
-  
-  const handleReview = () =>{
-   
+    const reviews = e.target.review.value;
+    const reviewData = reviews; 
+    setReviewData(reviews);
+    console.log(reviewData);
+
     axiosPublic.post('/reviews',{reviewData})
     .then(response => {console.log('Data submitted successfully:', response.data)
       if(response.data.acknowledged === true){
@@ -34,17 +32,43 @@ const MealDetails = () => {
           
     }
     })
-
-  }
-
+  };
+  
+ 
 
   const [meal,setMeal] = useState()
 
     const {id} = useParams()
     console.log(id)
 
+    console.log(id);
+  
+
     const detailsData = useLoaderData()
     console.log(detailsData);
+    axiosPublic.put('/like', id)
+      .then(response => {console.log('Data submitted successfully:', response.data)
+      if(response.data.acknowledged === true){
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `${id.title} Added succesfully`,
+            showConfirmButton: false,
+            timer: 1550
+          });         
+    }
+    })
+      .catch(error => console.error('Error submitting data:', error));
+   
+    
+
+    const handleLike = async () => {
+
+     console.log(id);
+      
+    };
+
+    
 
 useEffect(()=>{
     const findProducts = detailsData.find((product)=>product._id === id)
@@ -54,6 +78,15 @@ console.log(meal);
 
   const { user } = useContext(AuthContext);
 
+
+
+  // like
+
+
+
+
+
+  
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -67,9 +100,9 @@ console.log(meal);
             <p className="text-xl">{meal?.mealTitle}</p>
          <h3><span className="font-serif font-semibold">Rating:</span> {meal?.rating} </h3>
          <h3><span className="font-serif font-semibold">Price:</span> ${meal?.price} </h3>
-         <h3><span className="font-serif font-semibold">Post time:</span> 05.10 </h3>
+         <h3><span className="font-serif font-semibold">Post time:</span> {meal?.time} </h3>
         {user &&  <div className="text-xl my-4">
-         <button><SlLike /></button>
+         <button onClick={handleLike}><SlLike /></button>
          </div>}
          <div className="text-xl my-4">
          <button><VscSend /></button>
@@ -87,7 +120,7 @@ console.log(meal);
         <h1 className="text-2xl font-bold text-center">Share your review</h1>
       <textarea name="review" placeholder="Share your review" className="textarea shadow-xl lg:ml-[550px] textarea-bordered textarea-lg w-full lg:max-w-xs" ></textarea>
       </div>
-        <button onClick={handleReview} className="btn btn-outline mt-6 mb-8 lg:ml-[585px] ml-20 btn-wide btn-sm">Submit</button>
+        <button  className="btn btn-outline mt-6 mb-8 lg:ml-[585px] ml-20 btn-wide btn-sm">Submit</button>
       </form>
     </div>
   );

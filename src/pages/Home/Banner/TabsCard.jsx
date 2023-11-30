@@ -9,12 +9,13 @@ const TabsCard = ({item}) => {
       <div className="card w-96 h-[600px] bg-base-100 shadow-xl">
         <figure>
           <img
+          className="h-80"
             src={image}
             alt="#"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{title}</h2>
+          <h2 className="card-title flex justify-center text-center">{title}</h2>
           <span>{description}</span>
           <span>Price: ${price}</span>
           <span>Ratting: {rating}</span>

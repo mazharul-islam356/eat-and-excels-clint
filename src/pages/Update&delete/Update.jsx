@@ -42,8 +42,7 @@ const Update = () => {
             title: `${data.title} Added succesfully`,
             showConfirmButton: false,
             timer: 1550
-          });
-          
+          });         
     }
     })
       .catch(error => console.error('Error submitting data:', error));

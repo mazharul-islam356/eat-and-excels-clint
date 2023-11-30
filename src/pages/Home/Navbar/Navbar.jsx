@@ -130,7 +130,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
             </NavLink>
 
 
-            <NavLink to='/UpcomingMeals'>
+            <NavLink to='/dashBoard/upcoming'>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "black", display: "block" }}        
@@ -194,7 +194,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
             </NavLink>
 
 
-            <NavLink to='/UpcomingMeals'>
+            <NavLink to='/dashBoard/upcoming'>
             <Button
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}        
