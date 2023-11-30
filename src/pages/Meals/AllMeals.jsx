@@ -37,9 +37,9 @@ const AllMeals = () => {
           value={searchValue}
           type="text"
           placeholder="Search…"
-          className="input input-bordered lg:w-[1108px]"
+          className="input input-bordered rounded-r lg:w-[1108px]"
         />
-        <button className="btn btn-square w-16">
+        <button className="btn btn-square rounded-l relative top-1 w-16">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"

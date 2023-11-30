@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 
-const MyProfile = () => {
+const Profile = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
 
   return (
     <div>
       <div className="relative left-20 border shadow-xl min-h-screen w-[1000px]">
-        <h1 className="text-center text-2xl font-semibold mt-10">My Profile</h1>
+        <h1 className="text-center text-2xl font-semibold underline mt-10">My Profile</h1>
 
-        <div className="card w-96 ml-80 mt-40 bg-base-100 shadow-xl">
+        <div className="card w-96 ml-80 mt-40 border bg-base-100 shadow-xl">
           <div className="avatar flex justify-center">
             <div className="w-24 rounded-full">
               <img src={user?.photoURL} />
@@ -27,4 +27,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default Profile;

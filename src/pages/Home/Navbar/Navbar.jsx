@@ -248,7 +248,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
           <Typography textAlign="center">{user ? 'Logout' : 'Login'}</Typography>
         </NavLink>
       ) : setting === "Dashboard" ? (
-        <NavLink to="/dashboard/myProfile">
+        <NavLink to="/dashboard/profile">
           <Typography textAlign="center">{setting}</Typography>
         </NavLink>
       ) : (

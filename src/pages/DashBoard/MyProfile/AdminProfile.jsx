@@ -31,7 +31,7 @@ const AdminProfile = () => {
       <p className="text-3xl text-center mt-4">Total user: {users.length}</p>
         <h1 className="text-center text-2xl underline mb-10 font-semibold mt-10">Admin Profile</h1>
 
-        <div className="card w-96 bg-base-100 ml-20 mt-20 shadow-xl">
+        <div className="card w-96 ml-80 mt-40 bg-base-100 shadow-xl">
           <div className="avatar flex justify-center">
             <div className="w-24 rounded-full">
               <img src={user?.photoURL} />

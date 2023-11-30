@@ -95,7 +95,7 @@ const DashBoard = () => {
 
 
           <li>
-            <NavLink to="/dashBoard/myProfile">
+            <NavLink to="profile">
             <CiUser />
               Profile
             </NavLink>

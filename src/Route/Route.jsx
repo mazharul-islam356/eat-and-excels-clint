@@ -22,6 +22,7 @@ import PrivetRoute from "../PrivetRoute/PrivetRoute";
 import Upcoming from "../pages/DashBoard/MyProfile/Upcoming";
 import AdminProfile from "../pages/DashBoard/MyProfile/AdminProfile";
 import ErrorPage from "../pages/Error/ErrorPage";
+import Profile from "../pages/DashBoard/MyProfile/Profile";
 
 
 
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
             path:'/dashBoard',
             element:<PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
             children:[
+                {
+                path:'profile',
+                element:<Profile></Profile>
+            },
                 {
                 path:'myProfile',
                 element:<MyProfile></MyProfile>

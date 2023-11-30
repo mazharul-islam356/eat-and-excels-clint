@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../Authentication/Firebase/AuthProvider";
 import { SlLike } from "react-icons/sl";
 import { VscSend } from "react-icons/vsc";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const MealDetails = () => {
   const axiosPublic = useAxiosPublic()
@@ -46,6 +47,7 @@ const MealDetails = () => {
 
     const detailsData = useLoaderData()
     console.log(detailsData);
+    const navigate = useNavigate()
 
     
     const handleSend = (meal) =>{
@@ -60,7 +62,7 @@ const MealDetails = () => {
       .then(res=>{
         console.log(res.data)
   
-        if(res.data.acknowledged === true){
+        if(res.data.acknowledged === true && user){
           Swal.fire({
               position: "center",
               icon: "success",
@@ -68,6 +70,9 @@ const MealDetails = () => {
               showConfirmButton: false,
               timer: 1550
             });         
+      }else{
+        toast.error('Please login for send request')
+        navigate('/login')
       }
       })
         
