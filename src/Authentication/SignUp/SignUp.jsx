@@ -45,6 +45,8 @@ const SignUp = () => {
     const email = data.email;
     const pass = data.pass;
     const photoURL = data.image
+   
+
     console.log(name,email,pass);
     if(pass.length < 6){
       toast.error('Password should be at least 6 characters')
@@ -68,7 +70,7 @@ const SignUp = () => {
           const userInfo = {
             name: name,
             email: email,
-            photoURL :photoURL
+            photoURL :photoURL,
 
           }
           axiosPublic.post('/users',userInfo)

@@ -80,6 +80,15 @@ const MealDetails = () => {
     }
 
 
+    const handleLike = () =>{
+
+      axiosSecure.put('/like',id)
+      .then(res=>{console.log(res.data)
+        alert('like update')
+      })
+
+    }
+
     // axiosPublic.put('/like', id)
     //   .then(response => {console.log('Data submitted successfully:', response.data)
     //   if(response.data.acknowledged === true){
@@ -122,7 +131,11 @@ const { user } = useContext(AuthContext);
          <h3><span className="font-serif font-semibold">Price:</span> ${meal?.price} </h3>
          <h3><span className="font-serif font-semibold">Post time:</span> {meal?.time} </h3>
         {user &&  <div className="text-xl my-4">
-         <button><SlLike /></button>
+
+
+         <button onClick={handleLike}><SlLike /></button>
+
+
          </div>}
          <div className="text-xl my-4">
          <button className="btn btn-sm btn-outline" onClick={()=>handleSend(meal)} >Send request<VscSend /></button>

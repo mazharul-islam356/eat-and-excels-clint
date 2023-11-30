@@ -28,6 +28,7 @@ const AddMeal = () => {
   }, []);
 
 
+  
 
 
 
@@ -35,7 +36,30 @@ const AddMeal = () => {
 
   const onSubmit1 = (data) => {
     console.log(data);
-    axiosSecure.post('/allData', data)
+
+    const mealData = {
+
+      title: data.title,
+      description: data.description,
+      ingredients: data.ingredients,
+      image: data.image,
+      type: data.type,
+      price:  parseInt(data.price),
+      rating: parseInt(data.rating),
+      name: data.name,
+      like: parseInt(data.like),
+      email: data.email,
+      reviews: parseInt(data.reviews),
+      time: data.time,
+      date: data.date,
+
+    }
+    
+
+
+
+    console.log(data);
+    axiosSecure.post('/allData', mealData)
       .then(response => {console.log('Data submitted successfully:', response.data)
       if(response.data.acknowledged === true){
         Swal.fire({

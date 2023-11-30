@@ -46,7 +46,7 @@ console.log(items);
     return (
         <div className="my-4 text-w text-y md:grid grid-cols-3 justify-center items-center ml-10 lg:ml-20">
             {
-            items.map(item=><Link to={`payment/${item._id}`} key={item._id}  >
+            items?.map(item=><Link to={`payment/${item._id}`} key={item._id}  >
                 <Card  color={item.colorCode} variant="gradient" className="w-full mb-6 lg:mb-0 max-h-[35rem] max-w-[20rem] p-8">
                 <CardHeader
                   floated={false}
