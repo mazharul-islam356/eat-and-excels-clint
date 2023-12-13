@@ -23,6 +23,7 @@ import Upcoming from "../pages/DashBoard/MyProfile/Upcoming";
 import AdminProfile from "../pages/DashBoard/MyProfile/AdminProfile";
 import ErrorPage from "../pages/Error/ErrorPage";
 import Profile from "../pages/DashBoard/MyProfile/Profile";
+import Contact from "../pages/contact/Contact";
 
 
 
@@ -66,6 +67,12 @@ export const router = createBrowserRouter([
            
             
            },
+           {
+            path: '/contact',
+            element:<Contact></Contact>,
+           
+            
+           }
           ]
         },
         // admin route

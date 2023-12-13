@@ -123,6 +123,15 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
             </Button>
             </NavLink>
 
+            <NavLink to='/contact'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "black", display: "block" }}    
+            >
+             Contact
+            </Button>
+            </NavLink>
+
             
             <NavLink to='/AllMeals'>
             <Button
@@ -202,6 +211,15 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
               sx={{ my: 2, color: "white", display: "block" }}    
             >
              Join Us
+            </Button>
+            </NavLink>
+
+            <NavLink to='/contact'>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}    
+            >
+             Contact
             </Button>
             </NavLink>
 
