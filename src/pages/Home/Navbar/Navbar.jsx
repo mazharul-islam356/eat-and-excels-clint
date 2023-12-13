@@ -15,6 +15,8 @@ import { NavLink } from "react-router-dom";
 import { IoRestaurant } from "react-icons/io5";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import { FaBell } from "react-icons/fa6";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAllData from "../../../hooks/useAllData";
 
 
 function Navbar() {
@@ -50,6 +52,8 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
   
   };
 
+  const [meals] = useAllData()
+  
 
   return (
     <AppBar style={{ backgroundColor: "#116A7B" }} position="static">
@@ -57,6 +61,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
         <Toolbar disableGutters>
           {/* <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <img className="w-12 mr-2" src="/public/logo.png" alt="" />
+          
           <Typography
             variant="h6"
             noWrap
@@ -227,7 +232,11 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
           </Box>
 
           
-          <button className="mr-8 text-xl mt-1"><FaBell></FaBell></button>
+          <button className="mr-8 flex text-xl mt-1"> <FaBell>
+            
+            </FaBell>
+            <p className="text-sm font-bold text-red-700">{meals.length}</p>
+            </button>
 
 
 {/* Profile and dashboard */}

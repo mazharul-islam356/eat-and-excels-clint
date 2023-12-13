@@ -1,19 +1,31 @@
+/* eslint-disable react/no-unescaped-entities */
 import {
   Card,
   Input,
   Checkbox,
   Button,
   Typography,
+  Textarea,
 } from "@material-tailwind/react";
+
+
 const Contact = () => {
+
+
   return (
-    <Card color="transparent" shadow={false}>
-      <Typography variant="h4" color="blue-gray">
-        Sign Up
+   
+
+    <div className="flex justify-center my-10">
+
+
+<Card className="" color="transparent" shadow={false}>
+      <Typography className="text-center" variant="h3" color="blue-gray">
+        Contact Form
       </Typography>
-      <Typography color="gray" className="mt-1 font-normal">
-        Nice to meet you! Enter your details to register.
+      <Typography  color="gray" className="mt-1 text-center font-normal">
+      Let's get this conversation started.
       </Typography>
+
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-1 flex flex-col gap-6">
           <Typography variant="h6" color="blue-gray" className="-mb-3">
@@ -21,7 +33,7 @@ const Contact = () => {
           </Typography>
           <Input
             size="lg"
-            placeholder="name@mail.com"
+         placeholder="Input your name"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
@@ -32,55 +44,54 @@ const Contact = () => {
           </Typography>
           <Input
             size="lg"
-            placeholder="name@mail.com"
+            placeholder="Input your email"
             className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
             labelProps={{
               className: "before:content-none after:content-none",
             }}
           />
           <Typography variant="h6" color="blue-gray" className="-mb-3">
-            Password
+            Your Message
           </Typography>
-          <Input
-            type="password"
-            size="lg"
-            placeholder="********"
-            className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-            labelProps={{
-              className: "before:content-none after:content-none",
-            }}
-          />
+
+          
+ 
+          <div className="w-96">
+            <Textarea label="Message" />
+            </div>
+
+
         </div>
-        <Checkbox
-          label={
-            <Typography
-              variant="small"
-              color="gray"
-              className="flex items-center font-normal"
-            >
-              I agree the
-              <a
-                href="#"
-                className="font-medium transition-colors hover:text-gray-900"
-              >
-                &nbsp;Terms and Conditions
-              </a>
-            </Typography>
-          }
-          containerProps={{ className: "-ml-2.5" }}
-        />
+       
         <Button className="mt-6" fullWidth>
-          sign up
+          send
         </Button>
-        <Typography color="gray" className="mt-4 text-center font-normal">
-          Already have an account?{" "}
-          <a href="#" className="font-medium text-gray-900">
-            Sign In
-          </a>
-        </Typography>
+       
       </form>
     </Card>
+
+
+    </div>
+
+
   );
 };
 
 export default Contact;
+
+
+
+// ntac
+// X
+// Contact Sales
+// Let's get this conversation started. Tell us a bit about yourself, and we'll get in touch as soon as we can.
+// First name
+// Last name
+// alk to an
+// Sal
+// e will help you
+// pricing f
+// Work Email
+// Message
+// Co
+// Contact Sales
