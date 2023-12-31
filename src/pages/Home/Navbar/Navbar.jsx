@@ -11,13 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { NavLink } from "react-router-dom";
-import { IoRestaurant } from "react-icons/io5";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import { FaBell } from "react-icons/fa6";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAllData from "../../../hooks/useAllData";
-
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,22 +35,17 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  const {user,logOut} = React.useContext(AuthContext)
-const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
-
-
-
+  const { user, logOut } = React.useContext(AuthContext);
+  const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
 
   console.log(user);
   const handleLogOut = () => {
     logOut()
       .then(() => console.log("log out succecfullly"))
       .catch((err) => console.log(err));
-  
   };
 
-  const [meals] = useAllData()
-  
+  const [meals] = useAllData();
 
   return (
     <AppBar style={{ backgroundColor: "#116A7B" }} position="static">
@@ -61,7 +53,7 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
         <Toolbar disableGutters>
           {/* <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <img className="w-12 mr-2" src="/public/logo.png" alt="" />
-          
+
           <Typography
             variant="h6"
             noWrap
@@ -108,61 +100,55 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
                 display: { xs: "block", md: "none" },
               }}
             >
-
               <div>
-              <NavLink to='/'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block" }}    
-            >
-             Home
-            </Button>
-            </NavLink>
+                <NavLink to="/">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Home
+                  </Button>
+                </NavLink>
 
-            <NavLink to='/login'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block" }}    
-            >
-             Join Us
-            </Button>
-            </NavLink>
+                <NavLink to="/login">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Join Us
+                  </Button>
+                </NavLink>
 
-            <NavLink to='/contact'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block" }}    
-            >
-             Contact
-            </Button>
-            </NavLink>
+                <NavLink to="/contact">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Contact
+                  </Button>
+                </NavLink>
 
-            
-            <NavLink to='/AllMeals'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block" }}    
-            >
-             Meals
-            </Button>
-            </NavLink>
+                <NavLink to="/AllMeals">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Meals
+                  </Button>
+                </NavLink>
 
-
-            <NavLink to='/dashBoard/upcoming'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "black", display: "block" }}        
-            >
-              Upcoming Meals
-            </Button>
-           </NavLink>
+                <NavLink to="/dashBoard/upcoming">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "black", display: "block" }}
+                  >
+                    Upcoming Meals
+                  </Button>
+                </NavLink>
               </div>
-              
             </Menu>
-            
           </Box>
 
-          
           <Typography
             variant="h5"
             noWrap
@@ -180,72 +166,78 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
           >
             Eats & Excells
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex",marginLeft: 300  } }}>
-
-
-          <NavLink to='/'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}    
-            >
-             Home
-            </Button>
-            </NavLink>
-  
-            <NavLink to='/AllMeals'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}    
-            >
-             Meals
-            </Button>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", marginLeft: 250 },
+            }}
+          >
+            <NavLink to="/">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, mr: 2, color: "white", display: "block" }}
+              >
+                Home
+              </Button>
             </NavLink>
 
-            <NavLink to='/dashBoard/upcoming'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}        
-            >
-              Upcoming Meals
-            </Button>
-           </NavLink>
-
-           <NavLink to='/login'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}    
-            >
-             Join Us
-            </Button>
+            <NavLink to="/AllMeals">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, mr: 2, color: "white", display: "block" }}
+              >
+                Meals
+              </Button>
             </NavLink>
 
-            <NavLink to='/contact'>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: "white", display: "block" }}    
-            >
-             Contact
-            </Button>
+            <NavLink to="/dashBoard/upcoming">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, mr: 2, color: "white", display: "block" }}
+              >
+                Upcoming Meals
+              </Button>
             </NavLink>
 
+            <NavLink to="/login">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, mr: 2, color: "white", display: "block" }}
+              >
+                Join Us
+              </Button>
+            </NavLink>
 
+            <NavLink to="/contact">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Contact
+              </Button>
+            </NavLink>
           </Box>
 
-          
-          <button className="mr-8 flex text-xl mt-1"> <FaBell>
-            
-            </FaBell>
-            <p className="text-sm font-bold text-red-700">{meals.length}</p>
+          <Link to="/allMeals">
+            <button
+              data-tip="All Meals"
+              className="mr-8 tooltip tooltip-bottom flex text-xl mt-1"
+            >
+              {" "}
+              <FaBell></FaBell>
+              <p className="text-sm font-bold text-[#ed3930]">{meals.length}</p>
             </button>
+          </Link>
 
-
-{/* Profile and dashboard */}
+          {/* Profile and dashboard */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Click here">
-              {user && <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="#" src={user.photoURL} />
-              </IconButton>}
+              {user && (
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="#" src={user.photoURL} />
+                </IconButton>
+              )}
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
@@ -263,30 +255,24 @@ const settings = [`${user?.displayName}`, "Dashboard", "Logout"];
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              
-
-
-{settings.map((setting) => (
-  
-    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-      
-      {setting === "Logout" ? (
-        <NavLink onClick={handleLogOut} to={!user && '/login'}>
-          <Typography textAlign="center">{user ? 'Logout' : 'Login'}</Typography>
-        </NavLink>
-      ) : setting === "Dashboard" ? (
-        <NavLink to="/dashboard/profile">
-          <Typography textAlign="center">{setting}</Typography>
-        </NavLink>
-      ) : (
-        <Typography textAlign="center">{setting}</Typography>
-      )}
-    </MenuItem>
- 
-))}
-
-
-            </Menu> 
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  {setting === "Logout" ? (
+                    <NavLink onClick={handleLogOut} to={!user && "/login"}>
+                      <Typography textAlign="center">
+                        {user ? "Logout" : "Login"}
+                      </Typography>
+                    </NavLink>
+                  ) : setting === "Dashboard" ? (
+                    <NavLink to="/dashboard/profile">
+                      <Typography textAlign="center">{setting}</Typography>
+                    </NavLink>
+                  ) : (
+                    <Typography textAlign="center">{setting}</Typography>
+                  )}
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </Container>

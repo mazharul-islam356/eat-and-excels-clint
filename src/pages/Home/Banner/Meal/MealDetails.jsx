@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../Authentication/Firebase/AuthProvider";
-import { SlLike } from "react-icons/sl";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { VscSend } from "react-icons/vsc";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
@@ -119,13 +119,14 @@ const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
+        <div className="hero-content flex-col lg:flex-row gap-20">
           <img src={meal?.image} className="lg:max-w-sm rounded-2xl shadow-2xl lg:mr-4" />
-          <div>
+          <div className="divider lg:divider-horizontal text-7xl"><MdKeyboardDoubleArrowRight className="opacity-60"></MdKeyboardDoubleArrowRight></div>
+          <div className="ml-10">
         
             <h1 className="text-5xl mb-4 font-bold">{meal?.title}</h1>
             <h1 className="text-2xl">{user?.displayName}</h1>
-            <span className="py-6">{meal?.description}</span> <br /> <br />
+            <p className="py-6 w-[36em]">{meal?.description}</p>
             <p className="text-xl">{meal?.mealTitle}</p>
          <h3><span className="font-serif font-semibold">Rating:</span> {meal?.rating} </h3>
          <h3><span className="font-serif font-semibold">Price:</span> ${meal?.price} </h3>
@@ -133,7 +134,7 @@ const { user } = useContext(AuthContext);
         {user &&  <div className="text-xl my-4">
 
 
-         <button onClick={handleLike}><SlLike /></button>
+         {/* <button onClick={handleLike}><SlLike /></button> */}
 
 
          </div>}

@@ -9,7 +9,6 @@ const TabSection = () => {
     
     const axiosSecure = useAxiosSecure()
     const [data, setData] = useState([]);
-
     const [tabIndex,setTabIndex] = useState(0)
 // console.log(data);
 

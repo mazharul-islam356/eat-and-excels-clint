@@ -70,16 +70,7 @@ const AllMeals = () => {
 </select>
 
     </div>
-        <div className="w-72 mb-4">
-          <input
-          // onChange={(e) => {
-          //   setPrice(e.target.value);
-          // }}
-            placeholder="Select by price"
-            className="input input-bordered input-sm w-full max-w-xs"
-            type="number"
-          />
-        </div>
+       
       </div>
 
       {/* Card */}

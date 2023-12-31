@@ -11,5 +11,3 @@ return axiosPublic
 };
 
 export default useAxiosPublic;
-
-// https://assingment-12-server-roan.vercel.app

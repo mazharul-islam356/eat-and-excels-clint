@@ -86,8 +86,8 @@ const {googleLogin} = useContext(AuthContext)
 
   return (
     <div className="my-10">
-      <h1 className="text-3xl text-center">Login Now!</h1>
-      <div className="py-4 lg:ml-[36rem]">
+      <h1 className="text-4xl font-semibold font-serif text-center">Login Now!</h1>
+      <div className="py-6 lg:ml-[30rem] mt-6">
         <form
           className="card-body card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           onSubmit={handleSubmit(onSubmit)}
@@ -113,7 +113,7 @@ const {googleLogin} = useContext(AuthContext)
 
           {errors.exampleRequired && <p>This field is required</p>}
 
-          <button className="btn mt-2 btn-outline">
+          <button className="btn mt-4 btn-outline">
             Login
           </button>
           
@@ -122,7 +122,7 @@ const {googleLogin} = useContext(AuthContext)
             <FcGoogle className="text-xl"></FcGoogle>
           </button>
 
-        <p>New to here? <Link className="underline" to='/signUp' >Sign Up</Link> Now</p>
+        <p className="mt-2">New to here? <Link className="underline" to='/signUp' >Sign Up</Link> Now</p>
         </form>
       </div>
     </div>
