@@ -52,7 +52,7 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <IoRestaurant  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-          <img className="w-12 mr-2" src="/public/logo.png" alt="" />
+          <img className="w-12 mr-2" src="https://i.ibb.co/kQ9YnYk/logo.png" alt="" />
 
           <Typography
             variant="h6"
@@ -149,6 +149,7 @@ function Navbar() {
             </Menu>
           </Box>
 
+         
           <Typography
             variant="h5"
             noWrap

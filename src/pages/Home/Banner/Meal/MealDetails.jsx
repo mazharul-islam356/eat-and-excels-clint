@@ -122,7 +122,7 @@ const { user } = useContext(AuthContext);
         <div className="hero-content flex-col lg:flex-row gap-20">
           <img src={meal?.image} className="lg:max-w-sm rounded-2xl shadow-2xl lg:mr-4" />
           <div className="divider lg:divider-horizontal text-7xl"><MdKeyboardDoubleArrowRight className="opacity-60"></MdKeyboardDoubleArrowRight></div>
-          <div className="ml-10">
+          <div className="ml-3">
         
             <h1 className="text-5xl mb-4 font-bold">{meal?.title}</h1>
             <h1 className="text-2xl">{user?.displayName}</h1>
