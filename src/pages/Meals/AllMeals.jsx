@@ -3,10 +3,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import {
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
  
 } from "@material-tailwind/react";
 import { Typography } from "@mui/material";
+import { IoMdPricetags } from "react-icons/io";
+import { TiStarHalfOutline } from "react-icons/ti";
+
 
 const AllMeals = () => {
   const axiosSecure = useAxiosSecure();
@@ -75,7 +79,7 @@ const AllMeals = () => {
 
       {/* Card */}
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-10">
         {data
          
           .filter((item) => {
@@ -97,7 +101,7 @@ const AllMeals = () => {
             <div key={card._id}>
               <Card
                 key={card._id}
-                className="w-full h-[21rem]  max-w-[45rem] flex-row"
+                className="w-full h-[21rem]  max-w-[44rem] flex-row"
               >
                 <CardHeader
                   shadow={false}
@@ -117,23 +121,30 @@ const AllMeals = () => {
                   >
                     {card.category}
                   </Typography>
-                  <Typography variant="h4" color="blue-gray" className="mb-2">
+                  <Typography variant="h5" color="black" className="mb-2">
                     {card.title}
                   </Typography>
-                  <Typography color="black" className=" font-normal">
+                  <Typography color="gray" className="border w-28 text-center border-blue-200 mx-auto shadow-md p-2 rounded-lg px-4 font-normal">
                     {card.type}
                   </Typography>
-                  <Typography color="gray" className=" font-normal">
+                  <Typography color="gray" className="pt-2 font-normal">
                     {card.description}
                   </Typography>
-                  <Typography color="gray" className=" font-normal">
-                    <span className="font-serif text-black font-semibold">Price: </span> $
-                    {card.price}
-                  </Typography>
-                  <Typography color="gray" className="mb-8 font-normal">
-                    <span className="font-serif text-black  font-semibold">Rating: </span>{" "}
-                    {card.rating}
-                  </Typography>
+                  <CardFooter>
+
+         <div className="flex justify-evenly gap-8">
+         <div className="flex items-center gap-2">
+          <Typography color="black" className="flex text-md font-bold items-center gap-1"><IoMdPricetags />Price:  </Typography>
+          {card.price}
+          </div>
+
+          <div className="flex items-center gap-2">
+          <Typography color="black" className="flex text-md font-bold items-center gap-1"><TiStarHalfOutline />Rating:  </Typography>
+          {card.rating}
+          </div>
+         </div>
+
+                  </CardFooter>
                 </CardBody>
               </Card>
             </div>

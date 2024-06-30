@@ -73,7 +73,7 @@ const {googleLogin} = useContext(AuthContext)
               timer: 1550
             });
             navigatae('/')
-      }
+      }o
       })
       .catch(err=>setError(err.message))  
     }
@@ -86,8 +86,8 @@ const {googleLogin} = useContext(AuthContext)
 
   return (
     <div className="my-10">
-      <h1 className="text-4xl font-semibold font-serif text-center">Login Now!</h1>
-      <div className="py-6 lg:ml-[30rem] mt-6">
+      <h1 className="text-4xl font-semibold font-serif text-center underline">Login Now!</h1>
+      <div className="py-6 h-auto flex items-center justify-center mt-6">
         <form
           className="card-body card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           onSubmit={handleSubmit(onSubmit)}
@@ -113,11 +113,11 @@ const {googleLogin} = useContext(AuthContext)
 
           {errors.exampleRequired && <p>This field is required</p>}
 
-          <button className="btn mt-4 btn-outline">
+          <button className="btn mt-4 btn-sm btn-accent btn-outline">
             Login
           </button>
           
-          <button onClick={()=> handleGLogin(googleLogin)} className="btn mt-3">
+          <button onClick={()=> handleGLogin(googleLogin)} className="btn btn-success btn-sm text-white">
                Continue With
             <FcGoogle className="text-xl"></FcGoogle>
           </button>

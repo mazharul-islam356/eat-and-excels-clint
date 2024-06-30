@@ -7,6 +7,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Textarea } from "@material-tailwind/react";
 
 const MealDetails = () => {
   const axiosPublic = useAxiosPublic()
@@ -151,8 +152,10 @@ const { user } = useContext(AuthContext);
       <form onSubmit={handleText}>
 
       <div className="mt-10 space-y-8">
-        <h1 className="text-2xl font-bold text-center">Share your review</h1>
-      <textarea name="review" placeholder="Share your review" className="textarea shadow-xl lg:ml-[550px] textarea-bordered textarea-lg w-full lg:max-w-xs" ></textarea>
+        <h1 className="text-2xl font-semibold font-serif text-center">-: Share your review :-</h1>
+      <div className="w-6/12 mx-auto">
+      <Textarea name="review" placeholder="Share your review"  ></Textarea>
+      </div>
       </div>
         <button  className="btn btn-outline mt-6 mb-8 lg:ml-[585px] ml-20 btn-wide btn-sm">Submit</button>
       </form>

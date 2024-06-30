@@ -130,8 +130,8 @@ const SignUp = () => {
 
     return (
         <div className="my-12">
-      <h1 className="text-4xl font-semibold font-serif text-center">Sign Up Now!</h1>
-      <div className="py-4 mt-6 lg:ml-[31rem]">
+      <h1 className="text-4xl font-semibold font-serif text-center underline">Sign Up Now!</h1>
+      <div className="py-4 mt-6 h-auto flex items-center justify-center">
         <form
           className="card-body card shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           onSubmit={handleSubmit(onSubmit)}
@@ -174,10 +174,10 @@ const SignUp = () => {
 
           {errors.exampleRequired && <p>This field is required</p>}
 
-          <button className="btn mt-2 btn-outline">
+          <button className="btn btn-success mt-2 btn-sm btn-outline">
             Sign up
           </button>
-          <button onClick={()=> handleGLogin(googleLogin)} className="btn mt-3">
+          <button onClick={()=> handleGLogin(googleLogin)} className="btn btn-sm text-white btn-accent">
                Continue With
             <FcGoogle className="text-xl"></FcGoogle>
             </button>
