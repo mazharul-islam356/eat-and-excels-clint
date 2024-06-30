@@ -12,7 +12,7 @@ const Section01 = () => {
         <div className='lg:h-[400px]  rounded-lg mb-12'>
       <div className="grid lg:grid-cols-3 justify-center items-center lg:ml-14  ">
         {/* card01 */}
-        <div className="card w-96 lg:mt-16 bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
+        <div className="card w-96 border border-1 shadow-sm lg:mt-16 bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
           <div className="card-body">
             <div className='text-5xl  p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out text-black hover:text-white ml-28'>   <MdTableChart /></div>
             <div className='text-center text-xl font-semibold'>Dynamic Tab Navigation
@@ -24,7 +24,7 @@ const Section01 = () => {
         </div>
 
         {/* card02 */}
-        <div className="card w-96 lg:mt-16 bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
+        <div className="card w-96 border border-1 shadow-sm lg:mt-16 bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
           <div className="card-body">
           <div className='text-5xl  p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out text-black hover:text-white ml-28'> <RiAdminFill /></div>
             <p className='text-center text-xl font-semibold'>Empowering Admin Control</p>
@@ -34,7 +34,7 @@ const Section01 = () => {
         </div>
 
         {/* card03 */}
-        <div className="card w-96 lg:mt-16 bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
+        <div className="card w-96 lg:mt-16 border border-1 shadow-sm bg-base-100 hover:bg-[#CDC2AE] hover:text-white p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out">
           <div className="card-body">
           <div className='text-5xl  p-4 opacity-72 scale-95 hover:opacity-100 hover:scale-105 transition duration-300 ease-in-out text-black hover:text-white ml-28'> <FaUserCircle /></div>
             <p className='text-center text-xl font-semibold'>Seamless User Control</p>

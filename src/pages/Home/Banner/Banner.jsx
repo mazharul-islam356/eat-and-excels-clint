@@ -1,7 +1,6 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import TabSection from './TabSection';
 
 const Banner = () => {
@@ -58,7 +57,7 @@ const Banner = () => {
         className="hero  h-[600px]"
         style={{ 
           backgroundImage:
-            "url(https://i.ibb.co/6tSkbd0/flat-lay-charts-organic-food-lunch-boxes.jpg)",
+            "url(https://i.ibb.co/q5X8WS6/eat-excel-2.jpg)",
             borderRadius: "10px"
         }}
       >

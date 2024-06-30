@@ -27,7 +27,7 @@ const TabSection = () => {
 
 
   return (
-    <div className="p-4 text-center mt-4">
+    <div className="p-4 text-center mt-10">
       <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>
           <Tab>All Meal</Tab>

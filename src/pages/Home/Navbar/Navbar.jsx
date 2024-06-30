@@ -15,6 +15,13 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import { FaBell } from "react-icons/fa6";
 import useAllData from "../../../hooks/useAllData";
+import { IoLogOutOutline } from "react-icons/io5";
+import { blue } from "@mui/material/colors";
+
+
+
+
+
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -260,16 +267,22 @@ function Navbar() {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   {setting === "Logout" ? (
                     <NavLink onClick={handleLogOut} to={!user && "/login"}>
+                      <div className="flex items-center gap-1 text-red-800">
                       <Typography textAlign="center">
                         {user ? "Logout" : "Login"}
                       </Typography>
+                      <IoLogOutOutline />
+                      </div>
                     </NavLink>
                   ) : setting === "Dashboard" ? (
                     <NavLink to="/dashboard/profile">
                       <Typography textAlign="center">{setting}</Typography>
                     </NavLink>
-                  ) : (
-                    <Typography textAlign="center">{setting}</Typography>
+                  ) : 
+                  
+                  (
+                    
+                    <Typography variant="h6" textAlign="center" className="text-light-blue-400 p-4 font-semibold">{setting}</Typography>
                   )}
                 </MenuItem>
               ))}
