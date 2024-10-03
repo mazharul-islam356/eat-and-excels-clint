@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="relative left-20 border shadow-xl min-h-screen w-[1000px]">
+      <div className="relative left-20 border shadow-xl min-h-screen w-[1000px] font-poppins">
         <h1 className="text-center text-2xl font-semibold underline mt-10 ">My Profile</h1>
 
         <div className="card w-96 ml-80 mt-40 border bg-base-100 shadow-xl pt-6">
@@ -16,9 +16,9 @@ const Profile = () => {
               <img src={user?.photoURL} />
             </div>
           </div>
-          <div className="card-body">
+          <div className="card-body flex justify-center items-center">
             <h2 className="card-title">{user?.displayName}</h2>
-            <p><span className="font-serif font-semibold">Email: </span>{user?.email}</p>
+            <p className="flex gap-1"><span className="font-serif font-semibold">Email: </span>{user?.email}</p>
             
           </div>
         </div>

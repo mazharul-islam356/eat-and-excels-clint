@@ -5,13 +5,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import Swal from "sweetalert2";
 
+
 const AddMeal = () => {
   const { register, handleSubmit:handleSubmit1 } =useForm()
   const {register:register2, handleSubmit:handleSubmit2}=useForm()
 
 
   // time and date
-
  const {user} = useContext(AuthContext)
 
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -26,7 +26,6 @@ const AddMeal = () => {
       clearInterval(interval);
     };
   }, []);
-
 
 
 
@@ -77,20 +76,7 @@ const AddMeal = () => {
   const onSubmit2 = (data) => {
 
     console.log(data);
-    // axiosSecure.post('/upcomming', data)
-    //   .then(response => {console.log('Data submitted successfully:', response.data)
-    //   if(response.data.acknowledged === true){
-    //     Swal.fire({
-    //         position: "center",
-    //         icon: "success",
-    //         title: `${data.title} Added succesfully`,
-    //         showConfirmButton: false,
-    //         timer: 1550
-    //       });
-          
-    // }
-    // })
-    //   .catch(error => console.error('Error submitting data:', error));
+    
   };
   
 
@@ -170,7 +156,6 @@ const AddMeal = () => {
                 <div className="w-96">
                   <Textarea {...register("description")} 
                   
-
                   label="Description" />
                 </div>
               </div>

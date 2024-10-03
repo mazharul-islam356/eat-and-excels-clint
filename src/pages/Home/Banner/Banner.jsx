@@ -54,7 +54,7 @@ const Banner = () => {
     return (
         <div className="my-4">
             <div
-        className="hero  h-[600px]"
+        className="hero h-[600px]"
         style={{ 
           backgroundImage:
             "url(https://i.ibb.co/q5X8WS6/eat-excel-2.jpg)",
@@ -63,9 +63,9 @@ const Banner = () => {
       >
         <div className="hero-overlay rounded-lg bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold mb-2">Empowering Hostel Life with Integrated Meal Solutions</h1>
-            <p className="mb-5">
+          <div className="flex justify-center flex-col items-center">
+            <h1 className="w-11/12 text-5xl font-bold mb-2">Empowering Hostel Life with Integrated Meal Solutions</h1>
+            <p className="mb-5 w-6/12">
             Streamline hostel operations, enhance student well-being, and ensure a seamless dining experience with our all-in-one hostel management system, featuring a robust meal service module.
             </p>
             {/* search icon */}
@@ -74,6 +74,7 @@ const Banner = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+            className='w-96'
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />

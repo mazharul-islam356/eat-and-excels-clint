@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 
@@ -18,8 +18,8 @@ const ServeMeals = () => {
 
     return (
         <div>
-          <div className="overflow-x-auto">
-  <table className="table">
+          <div className="pl-10 lg:max-w-full max-w-[360px] mx-auto pt-4 overflow-x-auto">
+  <table className="table table-sm">
     {/* head */}
     <thead>
       <tr>
