@@ -50,7 +50,7 @@ const handleDelete = (meal) => {
         <div>
             <h1 className="text-3xl text-center py-6 underline">All Meal</h1>
            <div className="overflow-x-auto lg:max-w-full max-w-[360px] mx-auto ml-10">
-  <table className="table table-xs">
+  <table className="table table-xs overflow-x-auto">
     <thead>
       <tr>
         <th>No.</th> 

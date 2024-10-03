@@ -17,8 +17,8 @@ const AllReviews = () => {
       console.log(data);
 
     return (
-        <div className=" ml-16 mt-14 shadow-md p-4 rounded-lg overflow-x-auto">
-            <table className="table">
+        <div className="ml-16 mt-14 shadow-md p-4 rounded-lg">
+            <table className="table overflow-x-auto">
             <thead>
       <tr>
         <th>No.</th>
