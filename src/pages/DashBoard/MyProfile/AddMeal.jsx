@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Authentication/Firebase/AuthProvider";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const AddMeal = () => {
@@ -26,7 +27,6 @@ const AddMeal = () => {
       clearInterval(interval);
     };
   }, []);
-
 
 
 
@@ -59,13 +59,8 @@ const AddMeal = () => {
     axiosSecure.post('/allData', mealData)
       .then(response => {console.log('Data submitted successfully:', response.data)
       if(response.data.acknowledged === true){
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${data.title} Added succesfully`,
-            showConfirmButton: false,
-            timer: 1550
-          });
+
+       toast.success(`${data.title} Added succesfully`)
           
     }
     })

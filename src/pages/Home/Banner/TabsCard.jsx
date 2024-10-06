@@ -7,8 +7,11 @@ import { TiStarHalfOutline } from "react-icons/ti";
 const TabsCard = ({item}) => {
   console.log(item);
     const {description,image,price,rating,title,_id} = item
+
+
+
   return (
-    <div className="grid mb-8 mt-4 ml-6" >
+    <div className="grid mb-8 mt-4 ml-6">
       <Card className="w-full max-w-[26rem] shadow-lg">
       <CardHeader floated={false} color="blue-gray">
         <img
@@ -32,7 +35,7 @@ const TabsCard = ({item}) => {
         <div className="group mt-8 flex flex-wrap items-center justify-evenly">
           
         <div className="flex items-center gap-2">
-          <Typography color="black" className="flex text-md font-bold items-center gap-1"><IoMdPricetags />Price:  </Typography>
+          <Typography color="black" className="flex text-md font-bold items-center gap-1"><IoMdPricetags />Price: </Typography>
           {price}
           </div>
 

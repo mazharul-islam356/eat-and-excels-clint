@@ -1,4 +1,4 @@
-import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
+import { FaFacebookMessenger } from "react-icons/fa";
 import Membership from "../../Membership&Payment/MemberShip/Membership";
 import Banner from "./Banner/Banner";
 import Section01 from "./ExtraPages/Section01";

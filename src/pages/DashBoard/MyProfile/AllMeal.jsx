@@ -5,14 +5,13 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAllData from "../../../hooks/useAllData";
+import toast from "react-hot-toast";
 
 const AllMeal = () => {
  
   const axiosSecure = useAxiosSecure()
   const [meals,refetch] = useAllData()
   
-
-
 
 // delete
 const handleDelete = (meal) => {
@@ -31,13 +30,7 @@ const handleDelete = (meal) => {
           if (res.data.deletedCount > 0) {
               // refetch to update the ui
               refetch()
-              Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: `${meal.title} has been deleted`,
-                  showConfirmButton: false,
-                  timer: 1500
-              });
+              toast.success(`${meal.title} delteted succecfully!`)
           }
 
 

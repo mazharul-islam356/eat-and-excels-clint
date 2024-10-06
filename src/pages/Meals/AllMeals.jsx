@@ -5,11 +5,12 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
- 
 } from "@material-tailwind/react";
 import { Typography } from "@mui/material";
 import { IoMdPricetags } from "react-icons/io";
 import { TiStarHalfOutline } from "react-icons/ti";
+
+
 
 
 const AllMeals = () => {
@@ -68,6 +69,7 @@ const AllMeals = () => {
             setCategory(e.target.value);
           }} className="select select-sm select-bordered w-full max-w-xs">
   <option disabled selected>Select by category</option>
+  <option>all meals</option>
   <option>breakfast</option>
   <option>lunch</option>
   <option>dinner</option>
@@ -80,9 +82,7 @@ const AllMeals = () => {
       {/* Card */}
 
       <div className="grid md:grid-cols-2 gap-10">
-        {data
-         
-          .filter((item) => {
+        {data.filter((item) => {
             
             const isSearchValue = searchValue.toLowerCase() === ""
                 ? item
@@ -93,9 +93,12 @@ const AllMeals = () => {
                 ? item
                 : item.type.toLowerCase().includes(category);
          
+                const isAllValue = category.toLowerCase() === "all meals"
+                ? item : item.type.toLowerCase().includes(category);
+                
+                console.log(isAllValue);
 
-
-            return isSearchValue && isCategoryValue;
+            return isSearchValue && isCategoryValue &&isAllValue;
           })
           .map((card) => (
             <div key={card._id}>
@@ -121,10 +124,10 @@ const AllMeals = () => {
                   >
                     {card.category}
                   </Typography>
-                  <Typography variant="h5" color="black" className="mb-2">
+                  <Typography variant="h5" color="black" className=" font-poppins">
                     {card.title}
                   </Typography>
-                  <Typography color="gray" className="border w-28 text-center border-blue-200 mx-auto shadow-md p-2 rounded-lg px-4 font-normal">
+                  <Typography color="gray" className="kbd kbd-sm px-4">
                     {card.type}
                   </Typography>
                   <Typography color="gray" className="pt-2 font-normal">
@@ -134,12 +137,12 @@ const AllMeals = () => {
 
          <div className="flex justify-evenly gap-8">
          <div className="flex items-center gap-2">
-          <Typography color="black" className="flex text-md font-bold items-center gap-1"><IoMdPricetags />Price:  </Typography>
+          <Typography color="black" className="flex text-md font-bold items-center gap-1"><IoMdPricetags />Price: </Typography>
           {card.price}
           </div>
 
           <div className="flex items-center gap-2">
-          <Typography color="black" className="flex text-md font-bold items-center gap-1"><TiStarHalfOutline />Rating:  </Typography>
+          <Typography color="black" className="flex text-md font-bold items-center gap-1"><TiStarHalfOutline />Rating: </Typography>
           {card.rating}
           </div>
          </div>

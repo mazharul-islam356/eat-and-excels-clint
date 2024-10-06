@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Authentication/Firebase/AuthProvider";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 
 const CheckOut = () => {
@@ -33,16 +34,15 @@ const {data: member} = useQuery({
 })
  console.log(member);
 
-const findData = member?.find(item=> item._id === id )
+const findData = member?.find(item => item._id === id )
 console.log(findData);
-
 
   
   console.log(mappedData);
 
 
 const {price} = mappedData || {}
-console.log(price,'priceeeee');
+console.log('price',price);
 console.log(items);
 
 const [clientSecret,setclientSecret] = useState('')
@@ -81,12 +81,13 @@ const {mutate: payHistory} = useMutation({
     if (card === null) {
       return;
     }
+
     const {error,paymentMethod} = await stripe.createPaymentMethod({
       type:'card',
       card
     })
     if(error){
-      console.log('payment error2', error);
+      console.log('payment error', error);
       setError(error)
     }else{
       console.log('payment method',paymentMethod);
@@ -114,6 +115,7 @@ const {mutate: payHistory} = useMutation({
     // Process the paymentIntent object here
     console.log('payment intent', paymentIntent);
     if(paymentIntent.status === 'succeeded'){
+      toast('Payment succesfully!')
       console.log('tansction id'),paymentIntent.id;
       setTransictionid(paymentIntent.id)
       const memberShipPay = {
@@ -131,8 +133,6 @@ const {mutate: payHistory} = useMutation({
     }
   }
   };
-
-
 
 
 
