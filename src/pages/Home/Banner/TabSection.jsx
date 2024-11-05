@@ -12,7 +12,6 @@ const TabSection = () => {
     const [tabIndex,setTabIndex] = useState(0)
 // console.log(data);
 
-
     const breakfast = data?.filter(item=>item.type === 'breakfast')
     const lunch = data?.filter(item=>item.type === 'lunch')
     const dinner = data?.filter(item=>item.type === 'dinner')

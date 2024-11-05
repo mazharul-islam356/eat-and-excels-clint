@@ -9,7 +9,6 @@ const TabsCard = ({item}) => {
     const {description,image,price,rating,title,_id} = item
 
 
-
   return (
     <div className="grid mb-8 mt-4 ml-6">
       <Card className="w-full max-w-[26rem] shadow-lg">
