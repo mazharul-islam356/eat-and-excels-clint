@@ -73,6 +73,7 @@ const handleDelete = (meal) => {
                 <Link to={`/dashboard/update/${item._id}`}>
                 <button className="btn text-blue-600 text-xl ml-1 btn-xs"><FaEdit></FaEdit></button>
                 </Link>
+                
             </td>
             <td>
                 

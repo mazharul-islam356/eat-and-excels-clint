@@ -13,11 +13,16 @@ const TabsCard = ({item}) => {
     <div className="grid mb-8 mt-4 ml-6">
       <Card className="w-full max-w-[26rem] shadow-lg">
       <CardHeader floated={false} color="blue-gray">
-        <img
+        {/* <img
         className="w-96 h-80"
           src={image}
           alt="ui/ux review check"
-        />
+        /> */}
+
+<div
+  className="w-[100%] h-64"
+  style={{ backgroundImage: `url("${image}")`, backgroundSize: "cover", backgroundPosition: "center" }}
+></div>
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
        
       </CardHeader>

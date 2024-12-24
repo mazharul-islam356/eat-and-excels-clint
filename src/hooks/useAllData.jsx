@@ -3,7 +3,8 @@ import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const useAllData = () => {
-    const axiosSecure=useAxiosSecure()
+    const axiosSecure = useAxiosSecure()
+    
     const {data : meals = [], refetch } =useQuery({
         queryKey : ['meals'] ,
         queryFn : async ()=>{
