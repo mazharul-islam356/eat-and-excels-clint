@@ -20,8 +20,7 @@ const Update = () => {
     const axiosSecure = useAxiosSecure()
     const { register, handleSubmit } = useForm();
     const {user} = useContext(AuthContext)
-    const [dataa,setData] = useState()
-
+    
     const [currentTime, setCurrentTime] = useState(new Date());
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,12 +33,12 @@ const Update = () => {
       }, []);
   const onSubmit = (data) => {
     axiosSecure.put('/allData', data)
-      .then(response => {console.log('Data submitted successfully:', response.data)
+      .then(response => {console.log('Data updated successfully:', response.data)
       if(response.data.acknowledged === true){
         Swal.fire({
             position: "center",
             icon: "success",
-            title: `${data.title} Added succesfully`,
+            title: `${data.title} updated succesfully`,
             showConfirmButton: false,
             timer: 1550
           });         
